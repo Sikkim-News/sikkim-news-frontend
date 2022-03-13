@@ -20,10 +20,13 @@ const socialMediaLinks = [
   },
   {
     icon: <Twitter />,
-    url: "https://www.youtube.com/channel/UCjBaF2Ro5OlcKv-N5dwhx2A",
+    url: "https://twitter.com/SikkimNews1?t=EXyI_I8opzDWdiHsHrS9_g&s=08",
   },
-  { icon: <Telegram />, url: "https://www.google.com" },
-  { icon: <Instagram />, url: "https://www.instagram.com" },
+  { icon: <Telegram />, url: "https://t.me/SikkimNews1" },
+  {
+    icon: <Instagram />,
+    url: "https://instagram.com/sikkimnews1?utm_medium=copy_link",
+  },
 ];
 
 export default function Home() {
