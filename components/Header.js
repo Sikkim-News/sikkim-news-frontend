@@ -1,31 +1,25 @@
-import styles from "@/styles/Header.module.css";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
-import { ButtonGroup } from "@mui/material";
 import Sidebar from "./Sidebar";
-import { useEffect, useState } from "react";
+import HeaderNav from "./HeaderNav";
 
 export default function Header() {
   return (
-    <div className={styles.header}>
-      <Image
-        src="/resources/logo-original.png"
-        width={60}
-        height={60}
-        alt="logo"
-      />
-
-      <Sidebar />
-    </div>
+    <AppBar
+      sx={{ height: "65px", backgroundColor: "#f5f3f4" }}
+      variant="outlined"
+    >
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Image
+          src="/resources/logo-original.png"
+          width={60}
+          height={60}
+          alt="logo"
+        />
+        <HeaderNav />
+        <Sidebar />
+      </Toolbar>
+    </AppBar>
   );
 }
