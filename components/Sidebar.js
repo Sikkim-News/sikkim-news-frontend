@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
     // if (

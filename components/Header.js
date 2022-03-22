@@ -20,8 +20,8 @@ export default function Header() {
     <div className={styles.header}>
       <Image
         src="/resources/logo-original.png"
-        width={60}
-        height={60}
+        width={70}
+        height={70}
         alt="logo"
       />
 
