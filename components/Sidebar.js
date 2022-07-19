@@ -9,6 +9,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { IconButton, ListItemButton, Typography } from "@mui/material";
+import Link from "next/link";
 
 const categories = [
   "Exclusives",
@@ -27,6 +28,9 @@ export default function Sidebar() {
     setIsOpen(open);
   };
 
+  const handleMenuButtonPress = () => {
+    toggleDrawer(false);
+  };
   const list = () => (
     <Box sx={{ width: "70vw" }} role="presentation">
       <Typography
@@ -42,15 +46,22 @@ export default function Sidebar() {
 
       <List>
         {categories.map((text) => (
-          <ListItemButton href="#" sx={{ textAlign: "center" }} key={text}>
-            <ListItemText
-              primaryTypographyProps={{
-                fontFamily: "Poppins",
-                fontSize: "1.1rem",
-              }}
-              primary={text}
-            />
-          </ListItemButton>
+          <Link
+            onClick={handleMenuButtonPress}
+            key={text}
+            href={`/category/${text.toLowerCase()}`}
+            passHref
+          >
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText
+                primaryTypographyProps={{
+                  fontFamily: "Poppins",
+                  fontSize: "1.1rem",
+                }}
+                primary={text}
+              />
+            </ListItemButton>
+          </Link>
         ))}
       </List>
       <Divider />

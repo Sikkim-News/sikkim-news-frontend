@@ -1,4 +1,5 @@
 import { Button, ButtonGroup } from "@mui/material";
+import Link from "next/link";
 
 const categories = [
   "Exclusives",
@@ -13,7 +14,6 @@ const categories = [
 export default function HeaderNav() {
   return (
     <ButtonGroup
-      disableElevation
       sx={{
         height: "66px",
         borderRadius: "0",
@@ -21,21 +21,25 @@ export default function HeaderNav() {
       }}
     >
       {categories.map((category, idx) => (
-        <Button
-          href="#"
-          variant="text"
-          sx={{
-            borderRadius: "0",
-            color: "#000",
-            paddingLeft: "1rem",
-            paddingRight: "1rem",
-            fontFamily: "Poppins",
-            fontSize: "1rem",
-          }}
+        <Link
           key={idx}
+          href={`/category/${category.replace(/ /g, "").toLowerCase()}`}
+          passHref
         >
-          {category}
-        </Button>
+          <Button
+            variant="text"
+            sx={{
+              borderRadius: "0",
+              color: "#000",
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+              fontFamily: "Poppins",
+              fontSize: "1rem",
+            }}
+          >
+            {category}
+          </Button>
+        </Link>
       ))}
     </ButtonGroup>
   );

@@ -1,16 +1,18 @@
+import Layout from "@/components/Layout";
 import { fetchAPI } from "../lib/api";
 
 const Home = ({ articles }) => {
   return (
-    <div>
+    <Layout>
       <div>
         {articles.map((article, idx) => (
           <h1 key={idx}>{article.attributes.title}</h1>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 };
+
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articlesRes, categoriesRes] = await Promise.all([

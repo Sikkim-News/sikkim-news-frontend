@@ -3,7 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     loader: "default",
-    domains: ["localhost", "picsum.photos"],
+    domains: [
+      "localhost",
+      "picsum.photos",
+      "images.unsplash.com",
+      "res.cloudinary.com",
+    ],
   },
 };
 

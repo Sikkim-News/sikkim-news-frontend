@@ -1,35 +1,17 @@
+import { useRouter } from "next/router";
+import Header from "./Header";
+import Footer from "./Footer";
+import styles from "@/styles/Layout.module.css";
 
-import { makeStyles } from '@mui/styles';
-import React from 'react'
-import Carousel from './carousel'
-import HorizontalTrendingCards from './HorizontalTrendingCards';
-
-
-const useStyles =  makeStyles((theme)=>{
-    return {        
-        toolbar: {
-            marginTop:'2rem'
-        }
-    }
-})
-
-function Layout({}) {
-    const classes = useStyles() ;   
+function Layout({ children }) {
+  const router = useRouter();
   return (
-    <div >
-
-        {/* Carousel */}
-            <Carousel style = {{marginTop:"4rem"}} className= {classes.toolbar}/>
-
-        {/* Horizontal Cards */}
-            <HorizontalTrendingCards/>
-
-        {/* Veritcal Cards */}
-
-
-        </div>
-
-  )
+    <div>
+      <Header />
+      <div className={styles.container}>{children}</div>
+      <Footer />
+    </div>
+  );
 }
 
-export default Layout
+export default Layout;

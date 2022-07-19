@@ -1,40 +1,60 @@
-import Header from "@/components/Header";
-import { newsArticles } from "dummydata";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import Image from "next/image";
+import { fetchAPI } from "lib/api";
+import Layout from "@/components/Layout";
+import ReactMarkdown from "react-markdown";
 
-export default function NewsPage() {
-  // console.log(newsArticles);
+export default function NewsPage({ article }) {
   return (
-    <div>
-      <Header />
+    <Layout>
       <Box sx={{ padding: "1rem", maxWidth: "900px" }} component="article">
         <Typography variant="h4" fontFamily="Poppins" fontWeight="500">
-          {newsArticles[0].headline.toUpperCase()}
+          {article.attributes.title.toUpperCase()}
         </Typography>
 
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography fontFamily="Poppins" component="span">
-            {newsArticles[0].author}
+            {article.attributes.author.data.attributes.name}
           </Typography>
           <Typography fontFamily="Poppins" component="span">
-            {newsArticles[0].createdDate}
+            {new Date(article.attributes.publishedAt).toDateString()}
           </Typography>
         </Box>
 
         <Image
-          width={500}
-          height={400}
-          src={newsArticles[0].images[0]}
+          width={300}
+          height={200}
+          src={
+            article.attributes.coverImage.image.data.attributes.formats.small
+              .url
+          }
           alt="news-image"
-          layout="responsive"
         />
 
-        <Typography sx={{ whiteSpace: "pre-line" }}>
-          {newsArticles[0].body}
+        <Typography
+          sx={{
+            whiteSpace: "pre-line",
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+        >
+          <ReactMarkdown>{article.attributes.content}</ReactMarkdown>
         </Typography>
       </Box>
-    </div>
+    </Layout>
   );
+}
+
+export async function getServerSideProps({ params }) {
+  const article = await Promise.all([
+    fetchAPI("/articles", {
+      filters: { slug: params.slug },
+      populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
+    }),
+  ]);
+
+  return {
+    props: { article: article[0].data[0] },
+  };
 }

@@ -28,7 +28,7 @@ const socialMediaLinks = [
   },
 ];
 
-export default function SocialMedia() {
+export default function SocialMedia({ dark }) {
   return (
     <Box
       sx={{
@@ -40,7 +40,7 @@ export default function SocialMedia() {
     >
       {socialMediaLinks.map((element, idx) => (
         <IconButton
-          style={{ color: "#000" }}
+          style={dark ? { color: "#fff" } : { color: "#000" }}
           key={idx}
           href={element.url}
           target="_blank"

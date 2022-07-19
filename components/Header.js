@@ -13,14 +13,16 @@ export default function Header() {
       variant="outlined"
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href="/" passHref={true}>
-          <Image
-            src="/resources/logo-original.png"
-            width={60}
-            height={60}
-            alt="logo"
-          />
-        </Link>
+        <div style={{ cursor: "pointer" }}>
+          <Link href="/" passHref={true}>
+            <Image
+              src="/resources/logo-original.png"
+              width={60}
+              height={60}
+              alt="logo"
+            />
+          </Link>
+        </div>
 
         <HeaderNav />
         <Sidebar />
