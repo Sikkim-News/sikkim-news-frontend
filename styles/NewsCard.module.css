@@ -1,0 +1,47 @@
+.card {
+  max-height: max-content;
+}
+
+.headline {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.cardActionArea {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.cardActionArea img {
+  max-width: 40%;
+}
+
+.overflow {
+  flex-direction: column;
+}
+
+.cardContent {
+  font-family: "Poppins";
+  font-size: 0.7rem;
+  padding: 0px;
+}
+
+.cardContent p {
+  margin: 5px;
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    margin-left: 0;
+  }
+
+  .cardActionArea {
+    flex-direction: column;
+  }
+
+  .card img {
+    max-width: 100%;
+  }
+}
