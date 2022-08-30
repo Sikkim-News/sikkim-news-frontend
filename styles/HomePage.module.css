@@ -1,4 +1,23 @@
+.LayoutStyle {
+  align-self: center;
+}
+
 .HomePage h1 {
   display: block;
   color: darkblue;
+}
+
+@media only screen and (min-width: 600px) {
+  .HomePage__arrangement {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .HomePage__newsArticles {
+    width: 49%;
+  }
+
+  .HomePage__carousel {
+    width: 50%;
+  }
 }

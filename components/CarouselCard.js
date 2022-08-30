@@ -6,14 +6,14 @@ export default function CarouselCard({ article }) {
     <Link href={`/${article.attributes.slug}`} passHref>
       <Card
         sx={{
-          height: "300px",
+          height: "450px",
           borderRadius: "0",
           cursor: "pointer",
         }}
       >
         <CardMedia
           component="img"
-          height="300"
+          height="450"
           image={
             article.attributes.coverImage.image.data.attributes.formats.small
               ?.url

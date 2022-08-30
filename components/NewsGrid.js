@@ -6,10 +6,14 @@ import ViewMore from "./ViewMore";
 
 function NewsGrid({ overflow, articles, header, categorySlug, viewMore }) {
   return (
-    <div>
+    <div className={styles.newsGrid}>
       <SectionHeader title={header} />
-      <div className={`${styles.cardGrid} ${overflow ? styles.overflow : ""}`}>
-        {articles.slice(0, 4).map((item, i) => (
+      <div
+        className={`${styles.cardGrid} ${
+          overflow ? styles.horizontalScroll : styles.squareGrid
+        }`}
+      >
+        {articles.map((item, i) => (
           <NewsCard
             key={i}
             imageUrl={

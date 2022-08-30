@@ -1,0 +1,17 @@
+.contactHeader {
+  display: flex;
+  margin-top: 10px;
+}
+
+.contactHeader span {
+  margin-left: 5px;
+}
+
+.contactBody {
+  margin-left: 27px;
+  width: max-content;
+}
+
+.contactBody a {
+  text-decoration: underline;
+}

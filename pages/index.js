@@ -1,7 +1,6 @@
 import styles from "@/styles/HomePage.module.css";
 import Layout from "@/components/Layout";
 import { fetchAPI } from "../lib/api";
-import { Grid } from "@mui/material";
 import Carrousel from "@/components/Carrousel";
 import NewsGrid from "@/components/NewsGrid";
 
@@ -13,29 +12,31 @@ export default function Home({
 }) {
   return (
     <div className={styles.HomePage}>
-      <Layout>
-        <Grid container>
-          <Grid item xs={12} md={6}>
+      <Layout style={styles.LayoutStyle}>
+        <div className={styles.HomePage__arrangement}>
+          <div className={styles.HomePage__carousel}>
             <Carrousel articles={bannerArticles} />
-          </Grid>
-          <Grid item xs={12} md={6}>
+          </div>
+          <div className={styles.HomePage__newsArticles}>
             <NewsGrid
               articles={trendingArticles}
               header="Trending in Sikkim"
               categorySlug="trending"
             />
-            <NewsGrid
-              articles={nationalArticles}
-              header="National News"
-              categorySlug="national"
-            />
-            <NewsGrid
-              articles={sportsArticles}
-              header="Sports and Entertainment"
-              categorySlug="sports"
-            />
-          </Grid>
-        </Grid>
+          </div>
+        </div>
+        <NewsGrid
+          articles={nationalArticles}
+          header="National News"
+          categorySlug="national"
+          overflow
+        />
+        <NewsGrid
+          articles={sportsArticles}
+          header="Sports and Entertainment"
+          categorySlug="sports"
+          overflow
+        />
       </Layout>
     </div>
   );
@@ -75,3 +76,39 @@ export async function getServerSideProps() {
     },
   };
 }
+
+// export default function Home({
+//   bannerArticles,
+//   trendingArticles,
+//   nationalArticles,
+//   sportsArticles,
+// }) {
+//   return (
+//     <div className={styles.HomePage}>
+//       <Layout>
+//         <Grid container>
+//           <Grid item xs={12} md={6}>
+//             <Carrousel articles={bannerArticles} />
+//           </Grid>
+//           <Grid item xs={12} md={6}>
+//             <NewsGrid
+//               articles={trendingArticles}
+//               header="Trending in Sikkim"
+//               categorySlug="trending"
+//             />
+//             <NewsGrid
+//               articles={nationalArticles}
+//               header="National News"
+//               categorySlug="national"
+//             />
+//             <NewsGrid
+//               articles={sportsArticles}
+//               header="Sports and Entertainment"
+//               categorySlug="sports"
+//             />
+//           </Grid>
+//         </Grid>
+//       </Layout>
+//     </div>
+//   );
+// }

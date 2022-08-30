@@ -3,12 +3,11 @@ import Header from "./Header";
 import Footer from "./Footer";
 import styles from "@/styles/Layout.module.css";
 
-function Layout({ children }) {
-  const router = useRouter();
+function Layout({ children, style }) {
   return (
-    <div>
+    <div className={styles.layout}>
       <Header />
-      <div className={styles.container}>{children}</div>
+      <div className={`${styles.layout__children} ${style}`}>{children}</div>
       <Footer />
     </div>
   );

@@ -9,7 +9,7 @@ function CategoryPage({ categoryDetails }) {
 
   return (
     <Layout>
-      {categoryDetails ? (
+      {categoryDetails.attributes.articles.data.length != 0 ? (
         <>
           <NewsGrid
             articles={categoryDetails.attributes.articles.data}

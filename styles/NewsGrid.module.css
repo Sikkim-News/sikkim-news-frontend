@@ -1,6 +1,9 @@
 .cardGrid {
   display: grid;
-  gap: 5px;
+}
+
+.squareGrid {
+  /* grid-template-columns: 1fr 1fr; */
 }
 
 .cardGrid div {
@@ -11,23 +14,16 @@
   display: block;
 }
 
-@media only screen and (min-width: 600px) {
-  .cardGrid {
+@media screen and (min-width: 600px) {
+  .squareGrid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .viewMore {
-    display: none;
+  .horizontalScroll {
+    grid-auto-flow: column;
+    grid-auto-columns: 30%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 0 10px 10px;
   }
-}
-
-.overflow {
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(250px, 1fr);
-  overflow-x: auto;
-}
-
-.overflow button {
-  flex-direction: column;
 }

@@ -10,7 +10,7 @@ export default function Header() {
     <AppBar
       position="static"
       sx={{ height: "65px", backgroundColor: "#f5f3f4" }}
-      variant="outlined"
+      // variant="outlined"
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ cursor: "pointer" }}>
