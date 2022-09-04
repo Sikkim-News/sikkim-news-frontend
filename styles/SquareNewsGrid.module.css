@@ -1,0 +1,21 @@
+.cardGrid {
+  display: grid;
+}
+
+.cardGrid div {
+  margin: 5px;
+}
+
+.viewMore {
+  display: block;
+}
+
+@media screen and (min-width: 600px) {
+  .squareGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pageSquareGrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

@@ -1,16 +1,22 @@
 import React from "react";
 import NewsCard from "./NewsCard";
 import SectionHeader from "./SectionHeader";
-import styles from "@/styles/NewsGrid.module.css";
+import styles from "@/styles/SquareNewsGrid.module.css";
 import ViewMore from "./ViewMore";
 
-function NewsGrid({ overflow, articles, header, categorySlug, viewMore }) {
+function SquareNewsGrid({
+  isPageGrid,
+  articles,
+  header,
+  categorySlug,
+  viewMore,
+}) {
   return (
     <div className={styles.newsGrid}>
       <SectionHeader title={header} />
       <div
         className={`${styles.cardGrid} ${
-          overflow ? styles.horizontalScroll : styles.squareGrid
+          isPageGrid ? styles.pageSquareGrid : styles.squareGrid
         }`}
       >
         {articles.map((item, i) => (
@@ -36,4 +42,4 @@ function NewsGrid({ overflow, articles, header, categorySlug, viewMore }) {
   );
 }
 
-export default NewsGrid;
+export default SquareNewsGrid;

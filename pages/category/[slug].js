@@ -1,14 +1,15 @@
 import Layout from "@/components/Layout";
-import NewsGrid from "@/components/NewsGrid";
+import NewsGrid from "@/components/SquareNewsGrid";
 import { fetchAPI } from "lib/api";
 import { useRouter } from "next/router";
 import styles from "@/styles/CategoriesPage.module.css";
+import HomeStyles from "@/styles/HomePage.module.css";
 
 function CategoryPage({ categoryDetails }) {
   const router = useRouter();
 
   return (
-    <Layout>
+    <Layout style={HomeStyles.LayoutStyle}>
       {categoryDetails.attributes.articles.data.length != 0 ? (
         <>
           <NewsGrid
@@ -18,6 +19,7 @@ function CategoryPage({ categoryDetails }) {
               categoryDetails.attributes.name.charAt(0).toUpperCase() +
               categoryDetails.attributes.name.substr(1).toLowerCase()
             }
+            isPageGrid
           />
         </>
       ) : (

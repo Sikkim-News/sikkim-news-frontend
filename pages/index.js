@@ -2,39 +2,58 @@ import styles from "@/styles/HomePage.module.css";
 import Layout from "@/components/Layout";
 import { fetchAPI } from "../lib/api";
 import Carrousel from "@/components/Carrousel";
-import NewsGrid from "@/components/NewsGrid";
+import SquareNewsGrid from "@/components/SquareNewsGrid";
+import HorizontalNewsGrid from "@/components/HorizontalNewsGrid";
 
 export default function Home({
   bannerArticles,
   trendingArticles,
   nationalArticles,
   sportsArticles,
+  localArticles,
+  exclusiveArticles,
 }) {
   return (
     <div className={styles.HomePage}>
       <Layout style={styles.LayoutStyle}>
         <div className={styles.HomePage__arrangement}>
           <div className={styles.HomePage__carousel}>
-            <Carrousel articles={bannerArticles} />
+            <Carrousel articles={bannerArticles.slice(0, 6)} />
           </div>
           <div className={styles.HomePage__newsArticles}>
-            <NewsGrid
-              articles={trendingArticles}
+            <SquareNewsGrid
+              home
+              articles={trendingArticles.slice(0, 4)}
               header="Trending in Sikkim"
               categorySlug="trending"
             />
           </div>
         </div>
-        <NewsGrid
-          articles={nationalArticles}
+
+        <HorizontalNewsGrid
+          articles={localArticles.slice(0, 8)}
+          header="Local Headlines"
+          categorySlug="local"
+          overflow
+        />
+
+        <HorizontalNewsGrid
+          articles={nationalArticles.slice(0, 8)}
           header="National News"
           categorySlug="national"
           overflow
         />
-        <NewsGrid
-          articles={sportsArticles}
+        <HorizontalNewsGrid
+          articles={sportsArticles.slice(0, 8)}
           header="Sports and Entertainment"
           categorySlug="sports"
+          overflow
+        />
+
+        <HorizontalNewsGrid
+          articles={exclusiveArticles.slice(0, 8)}
+          header="SN Exclusives"
+          categorySlug="exclusives"
           overflow
         />
       </Layout>
@@ -44,28 +63,42 @@ export default function Home({
 
 export async function getServerSideProps() {
   // Run API calls in parallel
-  const [bannerArticles, trendingArticles, nationalArticles, sportsArticles] =
-    await Promise.all([
-      fetchAPI("/categories", {
-        filters: { name: "banner" },
-        populate: {
-          articles: { populate: { coverImage: { populate: "*" } } },
-          sort: "createdAt",
-        },
-      }),
-      fetchAPI("/categories", {
-        filters: { name: "trending" },
-        populate: { articles: { populate: { coverImage: { populate: "*" } } } },
-      }),
-      fetchAPI("/categories", {
-        filters: { name: "national" },
-        populate: { articles: { populate: { coverImage: { populate: "*" } } } },
-      }),
-      fetchAPI("/categories", {
-        filters: { name: "sports" },
-        populate: { articles: { populate: { coverImage: { populate: "*" } } } },
-      }),
-    ]);
+  const [
+    bannerArticles,
+    trendingArticles,
+    nationalArticles,
+    sportsArticles,
+    localArticles,
+    exclusiveArticles,
+  ] = await Promise.all([
+    fetchAPI("/categories", {
+      filters: { name: "banner" },
+      populate: {
+        articles: { populate: { coverImage: { populate: "*" } } },
+        sort: "createdAt",
+      },
+    }),
+    fetchAPI("/categories", {
+      filters: { name: "trending" },
+      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+    }),
+    fetchAPI("/categories", {
+      filters: { name: "national" },
+      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+    }),
+    fetchAPI("/categories", {
+      filters: { name: "sports" },
+      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+    }),
+    fetchAPI("/categories", {
+      filters: { name: "local" },
+      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+    }),
+    fetchAPI("/categories", {
+      filters: { name: "exclusives" },
+      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+    }),
+  ]);
 
   return {
     props: {
@@ -73,6 +106,8 @@ export async function getServerSideProps() {
       trendingArticles: trendingArticles.data[0].attributes.articles.data,
       nationalArticles: nationalArticles.data[0].attributes.articles.data,
       sportsArticles: sportsArticles.data[0].attributes.articles.data,
+      localArticles: localArticles.data[0].attributes.articles.data,
+      exclusiveArticles: exclusiveArticles.data[0].attributes.articles.data,
     },
   };
 }
