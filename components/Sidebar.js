@@ -24,13 +24,10 @@ const categories = [
 export default function Sidebar() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const toggleDrawer = (open) => (event) => {
+  const toggleDrawer = (open) => () => {
     setIsOpen(open);
   };
 
-  const handleMenuButtonPress = () => {
-    toggleDrawer(false);
-  };
   const list = () => (
     <Box sx={{ width: "70vw" }} role="presentation">
       <Typography
@@ -44,12 +41,11 @@ export default function Sidebar() {
         Categories
       </Typography>
 
-      <List>
+      <List onClick={toggleDrawer(false)}>
         {categories.map((text) => (
           <Link
-            onClick={handleMenuButtonPress}
             key={text}
-            href={`/category/${text.toLowerCase()}`}
+            href={`/category/${text.replace(/ /g, "").toLowerCase()}`}
             passHref
           >
             <ListItemButton sx={{ textAlign: "center" }}>
