@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Sikkim News</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <GlobalContext.Provider value={global.attributes}>
         <Component {...pageProps} />
