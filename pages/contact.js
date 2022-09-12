@@ -7,10 +7,14 @@ import InterestsIcon from "@mui/icons-material/Interests";
 
 import styles from "@/styles/ContactPage.module.css";
 import SocialMedia from "@/components/SocialMedia";
+import Head from "next/head";
 
 const contact = () => {
   return (
     <Layout>
+      <Head>
+        <title>Contact Us</title>
+      </Head>
       <div>
         <SectionHeader title="Contact Us" />
 
