@@ -4,10 +4,14 @@ import Image from "next/image";
 import { fetchAPI } from "lib/api";
 import Layout from "@/components/Layout";
 import ReactMarkdown from "react-markdown";
+import Head from "next/head";
 
 export default function NewsPage({ article }) {
   return (
     <Layout>
+      <Head>
+        <title>{article.attributes.title}</title>
+      </Head>
       <Box sx={{ padding: "1rem", maxWidth: "900px" }} component="article">
         <Typography variant="h4" fontFamily="Poppins" fontWeight="500">
           {article.attributes.title.toUpperCase()}

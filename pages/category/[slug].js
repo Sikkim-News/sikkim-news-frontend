@@ -4,12 +4,16 @@ import { fetchAPI } from "lib/api";
 import { useRouter } from "next/router";
 import styles from "@/styles/CategoriesPage.module.css";
 import HomeStyles from "@/styles/HomePage.module.css";
+import Head from "next/head";
 
 function CategoryPage({ categoryDetails }) {
   const router = useRouter();
 
   return (
     <Layout style={HomeStyles.LayoutStyle}>
+      <Head>
+        <title>{`Sikkim News - ${router.query.slug.toUpperCase()}`}</title>
+      </Head>
       {categoryDetails.attributes.articles.data.length != 0 ? (
         <>
           <NewsGrid
