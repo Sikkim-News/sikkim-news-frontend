@@ -4,14 +4,7 @@ import SectionHeader from "./SectionHeader";
 import styles from "@/styles/HorizontalNewsGrid.module.css";
 import ViewMore from "./ViewMore";
 
-function HorizontalNewsGrid({
-  overflow,
-  articles,
-  header,
-  categorySlug,
-  viewMore,
-  home,
-}) {
+function HorizontalNewsGrid({ articles, header, categorySlug }) {
   return (
     <div className={styles.newsGrid}>
       <div className={styles.newsGrid__header}>
