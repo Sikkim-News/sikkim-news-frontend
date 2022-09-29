@@ -31,27 +31,28 @@ export default function Home({
         </div>
 
         <HorizontalNewsGrid
-          articles={localArticles.slice(0, 8)}
+          articles={localArticles.slice(0, 6)}
           header="Local Headlines"
           categorySlug="local"
           overflow
         />
 
         <HorizontalNewsGrid
-          articles={nationalArticles.slice(0, 8)}
+          articles={nationalArticles.slice(0, 6)}
           header="National News"
           categorySlug="national"
           overflow
         />
+
         <HorizontalNewsGrid
-          articles={sportsArticles.slice(0, 8)}
+          articles={sportsArticles.slice(0, 6)}
           header="Sports and Entertainment"
           categorySlug="sports"
           overflow
         />
 
         <HorizontalNewsGrid
-          articles={exclusiveArticles.slice(0, 8)}
+          articles={exclusiveArticles.slice(0, 6)}
           header="SN Exclusives"
           categorySlug="exclusives"
           overflow
@@ -74,29 +75,50 @@ export async function getServerSideProps() {
     fetchAPI("/categories", {
       filters: { name: "banner" },
       populate: {
-        articles: { populate: { coverImage: { populate: "*" } } },
-        sort: "createdAt",
+        articles: {
+          populate: { coverImage: { populate: "*" } },
+          sort: ["publishedAt:desc"],
+        },
+      },
+      pagination: {
+        page: 1,
+        pageSize: 4,
       },
     }),
     fetchAPI("/categories", {
       filters: { name: "trending" },
-      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+      populate: {
+        articles: { populate: { coverImage: { populate: "*" } } },
+        sort: ["publishedAt:desc"],
+      },
     }),
     fetchAPI("/categories", {
       filters: { name: "national" },
-      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+      populate: {
+        articles: { populate: { coverImage: { populate: "*" } } },
+        sort: ["publishedAt:desc"],
+      },
     }),
     fetchAPI("/categories", {
       filters: { name: "sports" },
-      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+      populate: {
+        articles: { populate: { coverImage: { populate: "*" } } },
+        sort: ["publishedAt:desc"],
+      },
     }),
     fetchAPI("/categories", {
       filters: { name: "local" },
-      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+      populate: {
+        articles: { populate: { coverImage: { populate: "*" } } },
+        sort: ["publishedAt:desc"],
+      },
     }),
     fetchAPI("/categories", {
       filters: { name: "exclusives" },
-      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+      populate: {
+        articles: { populate: { coverImage: { populate: "*" } } },
+        sort: ["publishedAt:desc"],
+      },
     }),
   ]);
 
@@ -111,39 +133,3 @@ export async function getServerSideProps() {
     },
   };
 }
-
-// export default function Home({
-//   bannerArticles,
-//   trendingArticles,
-//   nationalArticles,
-//   sportsArticles,
-// }) {
-//   return (
-//     <div className={styles.HomePage}>
-//       <Layout>
-//         <Grid container>
-//           <Grid item xs={12} md={6}>
-//             <Carrousel articles={bannerArticles} />
-//           </Grid>
-//           <Grid item xs={12} md={6}>
-//             <NewsGrid
-//               articles={trendingArticles}
-//               header="Trending in Sikkim"
-//               categorySlug="trending"
-//             />
-//             <NewsGrid
-//               articles={nationalArticles}
-//               header="National News"
-//               categorySlug="national"
-//             />
-//             <NewsGrid
-//               articles={sportsArticles}
-//               header="Sports and Entertainment"
-//               categorySlug="sports"
-//             />
-//           </Grid>
-//         </Grid>
-//       </Layout>
-//     </div>
-//   );
-// }

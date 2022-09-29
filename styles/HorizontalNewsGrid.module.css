@@ -1,9 +1,19 @@
+.newsGrid__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewMoreHeader {
+  width: fit-content;
+  display: none;
+}
+
 .cardGrid {
   display: grid;
 }
 
 .cardGrid div {
-  margin: 5px;
+  margin: 10px;
 }
 
 .viewMore {
@@ -17,5 +27,13 @@
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     padding: 0 10px 10px;
+  }
+
+  .viewMore {
+    display: none;
+  }
+
+  .viewMoreHeader {
+    display: block;
   }
 }

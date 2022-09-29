@@ -14,7 +14,10 @@ function HorizontalNewsGrid({
 }) {
   return (
     <div className={styles.newsGrid}>
-      <SectionHeader title={header} />
+      <div className={styles.newsGrid__header}>
+        <SectionHeader title={header} />
+        <ViewMore className={styles.viewMoreHeader} slug={categorySlug} />
+      </div>
       <div className={`${styles.cardGrid} ${styles.horizontalScroll}`}>
         {articles.map((item, i) => (
           <NewsCard
@@ -30,11 +33,7 @@ function HorizontalNewsGrid({
           />
         ))}
       </div>
-      {viewMore ? (
-        <ViewMore className={styles.viewMore} slug={categorySlug} />
-      ) : (
-        <></>
-      )}
+      <ViewMore className={styles.viewMore} slug={categorySlug} />
     </div>
   );
 }
