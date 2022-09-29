@@ -23,7 +23,7 @@
 @media screen and (min-width: 600px) {
   .horizontalScroll {
     grid-auto-flow: column;
-    grid-auto-columns: 30%;
+    grid-auto-columns: 25%;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     padding: 0 10px 10px;

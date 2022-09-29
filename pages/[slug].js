@@ -50,15 +50,40 @@ export default function NewsPage({ article }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const article = await Promise.all([
-    fetchAPI("/articles", {
-      filters: { slug: params.slug },
-      populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
-    }),
-  ]);
+export async function getStaticPaths() {
+  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
 
   return {
-    props: { article: article[0].data[0] },
+    paths: articlesRes.data.map((article) => ({
+      params: {
+        slug: article.attributes.slug,
+      },
+    })),
+    fallback: false,
   };
 }
+
+export async function getStaticProps({ params }) {
+  const articlesRes = await fetchAPI("/articles", {
+    filters: { slug: params.slug },
+    populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
+  });
+
+  return {
+    props: { article: articlesRes.data[0] },
+    revalidate: 1,
+  };
+}
+
+// export async function getServerSideProps({ params }) {
+//   const article = await Promise.all([
+//     fetchAPI("/articles", {
+//       filters: { slug: params.slug },
+//       populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
+//     }),
+//   ]);
+
+//   return {
+//     props: { article: article[0].data[0] },
+//   };
+// }
