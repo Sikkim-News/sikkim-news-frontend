@@ -31,7 +31,7 @@ export default function NewsPage({ article }) {
         <meta name="twitter:image" content={seo.description} />
         <meta name="image" content={seo.description} />
 
-        {fullSeo.article && <meta property="og:type" content="article" />}
+        {article && <meta property="og:type" content="article" />}
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Box sx={{ padding: "1rem", maxWidth: "900px" }} component="article">
