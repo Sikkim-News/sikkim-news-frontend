@@ -7,10 +7,32 @@ import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 
 export default function NewsPage({ article }) {
+  const seo = {
+    title: article.attributes.title,
+    description: article.attributes.description,
+    image:
+      article.attributes.coverImage.image.data.attributes.formats.small.url,
+  };
+
+  console.log(seo);
+
   return (
     <Layout>
       <Head>
-        <title>{article.attributes.title}</title>
+        <title>{seo.title}</title>
+        <meta property="og:title" content={seo.title} />
+        <meta name="twitter:title" content={seo.title} />
+
+        <meta name="description" content={seo.description} />
+        <meta property="og:description" content={seo.description} />
+        <meta name="twitter:description" content={seo.description} />
+
+        <meta property="og:image" content={seo.description} />
+        <meta name="twitter:image" content={seo.description} />
+        <meta name="image" content={seo.description} />
+
+        {fullSeo.article && <meta property="og:type" content="article" />}
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Box sx={{ padding: "1rem", maxWidth: "900px" }} component="article">
         <Typography variant="h4" fontFamily="Poppins" fontWeight="500">
@@ -50,40 +72,40 @@ export default function NewsPage({ article }) {
   );
 }
 
-export async function getStaticPaths() {
-  const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
-
-  return {
-    paths: articlesRes.data.map((article) => ({
-      params: {
-        slug: article.attributes.slug,
-      },
-    })),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const articlesRes = await fetchAPI("/articles", {
-    filters: { slug: params.slug },
-    populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
-  });
-
-  return {
-    props: { article: articlesRes.data[0] },
-    revalidate: 1,
-  };
-}
-
-// export async function getServerSideProps({ params }) {
-//   const article = await Promise.all([
-//     fetchAPI("/articles", {
-//       filters: { slug: params.slug },
-//       populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
-//     }),
-//   ]);
+// export async function getStaticPaths() {
+//   const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
 
 //   return {
-//     props: { article: article[0].data[0] },
+//     paths: articlesRes.data.map((article) => ({
+//       params: {
+//         slug: article.attributes.slug,
+//       },
+//     })),
+//     fallback: false,
 //   };
 // }
+
+// export async function getStaticProps({ params }) {
+//   const articlesRes = await fetchAPI("/articles", {
+//     filters: { slug: params.slug },
+//     populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
+//   });
+
+//   return {
+//     props: { article: articlesRes.data[0] },
+//     revalidate: 1,
+//   };
+// }
+
+export async function getServerSideProps({ params }) {
+  const article = await Promise.all([
+    fetchAPI("/articles", {
+      filters: { slug: params.slug },
+      populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
+    }),
+  ]);
+
+  return {
+    props: { article: article[0].data[0] },
+  };
+}
