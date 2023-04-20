@@ -27,9 +27,9 @@ export default function NewsPage({ article }) {
         <meta property="og:description" content={seo.description} />
         <meta name="twitter:description" content={seo.description} />
 
-        <meta property="og:image" content={seo.description} />
-        <meta name="twitter:image" content={seo.description} />
-        <meta name="image" content={seo.description} />
+        <meta property="og:image" content={seo.image} />
+        <meta name="twitter:image" content={seo.image} />
+        <meta name="image" content={seo.image} />
 
         {article && <meta property="og:type" content="article" />}
         <meta name="twitter:card" content="summary_large_image" />
