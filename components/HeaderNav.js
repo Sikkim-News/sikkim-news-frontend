@@ -33,8 +33,9 @@ export default function HeaderNav() {
               color: "#000",
               paddingLeft: "1rem",
               paddingRight: "1rem",
-              fontFamily: "Poppins",
+              fontFamily: "Raleway",
               fontSize: "1rem",
+              fontWeight: "500",
             }}
           >
             {category}

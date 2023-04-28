@@ -1,0 +1,8 @@
+.image_wrapper > span {
+  width: 100% !important;
+  overflow: hidden;
+}
+
+.image_wrapper img {
+  object-fit: cover;
+}

@@ -5,6 +5,7 @@ import { fetchAPI } from "lib/api";
 import Layout from "@/components/Layout";
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
+import styles from "@/styles/NewsPage.module.css";
 
 export default function NewsPage({ article }) {
   const seo = {
@@ -13,8 +14,6 @@ export default function NewsPage({ article }) {
     image:
       article.attributes.coverImage.image.data.attributes.formats.small.url,
   };
-
-  console.log(seo);
 
   return (
     <Layout>
@@ -35,11 +34,22 @@ export default function NewsPage({ article }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Box sx={{ padding: "1rem", maxWidth: "900px" }} component="article">
-        <Typography variant="h4" fontFamily="Poppins" fontWeight="500">
+        <Typography
+          fontSize="2rem"
+          variant="h4"
+          fontFamily="Poppins"
+          fontWeight="500"
+        >
           {article.attributes.title.toUpperCase()}
         </Typography>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: "1rem",
+          }}
+        >
           <Typography fontFamily="Poppins" component="span">
             {article.attributes.author.data.attributes.name}
           </Typography>
@@ -48,20 +58,25 @@ export default function NewsPage({ article }) {
           </Typography>
         </Box>
 
-        <Image
-          width={300}
-          height={200}
-          src={
-            article.attributes.coverImage.image.data.attributes.formats.small
-              .url
-          }
-          alt="news-image"
-        />
+        <div className={`${styles.image_wrapper}`}>
+          <Image
+            width={400}
+            height={200}
+            // layout="fill"
+            src={
+              article.attributes.coverImage.image.data.attributes.formats.small
+                .url
+            }
+            alt="news-image"
+          />
+        </div>
 
         <Typography
           sx={{
             whiteSpace: "pre-line",
+            fontSize: "1rem",
             textAlign: "justify",
+            fontFamily: "Raleway",
             textJustify: "inter-word",
           }}
         >

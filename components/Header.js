@@ -4,13 +4,18 @@ import Image from "next/image";
 import Sidebar from "./Sidebar";
 import HeaderNav from "./HeaderNav";
 import Link from "next/link";
+import MountainImage from "./mountains.png";
 
 export default function Header() {
   return (
     <AppBar
       position="static"
-      sx={{ height: "65px", backgroundColor: "#f5f3f4" }}
-      // variant="outlined"
+      sx={{
+        height: "65px",
+        backgroundImage: `url(${MountainImage.src})`,
+        backgroundPosition: "50% 22%",
+        // backgroundSize: "cover",
+      }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ cursor: "pointer" }}>
