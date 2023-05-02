@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 import styles from "@/styles/NewsPage.module.css";
+import SocialMediaNewsShare from "@/components/SocialMediaNewsShare";
 
 export default function NewsPage({ article }) {
   const seo = {
@@ -83,6 +84,7 @@ export default function NewsPage({ article }) {
           <ReactMarkdown>{article.attributes.content}</ReactMarkdown>
         </Typography>
       </Box>
+      <SocialMediaNewsShare article={article} />
     </Layout>
   );
 }

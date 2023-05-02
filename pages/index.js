@@ -1,9 +1,9 @@
 import styles from "@/styles/HomePage.module.css";
 import Layout from "@/components/Layout";
 import { fetchAPI } from "../lib/api";
-import Carrousel from "@/components/Carrousel";
 import SquareNewsGrid from "@/components/SquareNewsGrid";
 import HorizontalNewsGrid from "@/components/HorizontalNewsGrid";
+import NewCarousel from "@/components/NewCarousel";
 
 export default function Home({
   bannerArticles,
@@ -18,7 +18,7 @@ export default function Home({
       <Layout style={styles.LayoutStyle}>
         <div className={styles.HomePage__arrangement}>
           <div className={styles.HomePage__carousel}>
-            <Carrousel articles={bannerArticles.slice(0, 6)} />
+            <NewCarousel articles={bannerArticles.slice(0, 6)} />
           </div>
           <div className={styles.HomePage__newsArticles}>
             <SquareNewsGrid
@@ -31,28 +31,28 @@ export default function Home({
         </div>
 
         <HorizontalNewsGrid
-          articles={localArticles.slice(0, 6)}
+          articles={localArticles.slice(0, 4)}
           header="Local Headlines"
           categorySlug="local"
           overflow
         />
 
         <HorizontalNewsGrid
-          articles={nationalArticles.slice(0, 6)}
+          articles={nationalArticles.slice(0, 4)}
           header="National News"
           categorySlug="national"
           overflow
         />
 
         <HorizontalNewsGrid
-          articles={sportsArticles.slice(0, 6)}
+          articles={sportsArticles.slice(0, 4)}
           header="Sports and Entertainment"
           categorySlug="sports"
           overflow
         />
 
         <HorizontalNewsGrid
-          articles={exclusiveArticles.slice(0, 6)}
+          articles={exclusiveArticles.slice(0, 4)}
           header="SN Exclusives"
           categorySlug="exclusives"
           overflow
