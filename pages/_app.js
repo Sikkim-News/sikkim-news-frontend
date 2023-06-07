@@ -8,6 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../config/theme";
 import createEmotionCache from "../config/createEmotionCache";
+import Script from "next/script"
 
 export const GlobalContext = createContext({});
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -21,7 +22,7 @@ function MyApp(props) {
         <title>Sikkim News</title>
         <link rel="icon" href="/favicon.ico" />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
-     crossorigin="anonymous"></script>
+     crossOrigin="anonymous"></script>
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalContext.Provider value={global.attributes}>
