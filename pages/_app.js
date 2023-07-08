@@ -28,6 +28,7 @@ function MyApp(props) {
         <GlobalContext.Provider value={global.attributes}>
           <CssBaseline />
           <Component {...pageProps} />
+          <Script id="kunato_js-js" type="module" src="https://qx-cdn.sgp1.digitaloceanspaces.com/widget/thesikkimnews/widget.js"></Script>
         </GlobalContext.Provider>
       </ThemeProvider>
     </CacheProvider>
