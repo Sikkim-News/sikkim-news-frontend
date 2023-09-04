@@ -7,8 +7,9 @@ import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 import styles from "@/styles/NewsPage.module.css";
 import SocialMediaNewsShare from "@/components/SocialMediaNewsShare";
+import HorizontalNewsGrid from "@/components/HorizontalNewsGrid";
 
-export default function NewsPage({ article }) {
+export default function NewsPage({ article, categoryArticles }) {
   const seo = {
     title: article.attributes.title,
     description: article.attributes.description,
@@ -49,11 +50,13 @@ export default function NewsPage({ article }) {
             display: "flex",
             justifyContent: "space-between",
             fontSize: "1rem",
+            margin:"1rem 0"
           }}
         >
           <Typography fontFamily="Poppins" component="span">
             {article.attributes.author.data.attributes.name}
           </Typography>
+
           <Typography fontFamily="Poppins" component="span">
             {new Date(article.attributes.publishedAt).toDateString()}
           </Typography>
@@ -85,44 +88,34 @@ export default function NewsPage({ article }) {
         </Typography>
       </Box>
       <SocialMediaNewsShare article={article} />
+
+      <HorizontalNewsGrid articles={categoryArticles.slice(0,6)} header={`Explore More Stories`} categorySlug={article.attributes.categories.data[0].attributes.slug}></HorizontalNewsGrid>
     </Layout>
   );
 }
 
-// export async function getStaticPaths() {
-//   const articlesRes = await fetchAPI("/articles", { fields: ["slug"] });
-
-//   return {
-//     paths: articlesRes.data.map((article) => ({
-//       params: {
-//         slug: article.attributes.slug,
-//       },
-//     })),
-//     fallback: false,
-//   };
-// }
-
-// export async function getStaticProps({ params }) {
-//   const articlesRes = await fetchAPI("/articles", {
-//     filters: { slug: params.slug },
-//     populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
-//   });
-
-//   return {
-//     props: { article: articlesRes.data[0] },
-//     revalidate: 1,
-//   };
-// }
-
 export async function getServerSideProps({ params }) {
+  console.log(params)
   const article = await Promise.all([
     fetchAPI("/articles", {
       filters: { slug: params.slug },
       populate: { coverImage: { populate: "*" }, categories: "*", author: "*" },
-    }),
-  ]);
+      }),
+    ]);
+
+    console.log(article[0].data[0].attributes.categories.data[0].attributes.slug);
+
+    const categoryArticles = await Promise.all([fetchAPI("/categories", {
+          filters: { slug: article[0].data[0].attributes.categories.data[0].attributes.slug },
+          populate: {
+            articles: { populate: { coverImage: { populate: "*" } } },
+            sort: ["publishedAt:desc"],
+          },
+    })]);
+
+    console.log(categoryArticles[0].data[0].attributes.articles.data);
 
   return {
-    props: { article: article[0].data[0] },
+    props: { article: article[0].data[0], categoryArticles: categoryArticles[0].data[0].attributes.articles.data },
   };
 }
