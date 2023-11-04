@@ -108,8 +108,7 @@ export async function getServerSideProps({ params }) {
     const categoryArticles = await Promise.all([fetchAPI("/categories", {
           filters: { slug: article[0].data[0].attributes.categories.data[0].attributes.slug },
           populate: {
-            articles: { populate: { coverImage: { populate: "*" } } },
-            sort: ["publishedAt:desc"],
+            articles: { populate: { coverImage: { populate: "*" } }, sort: ["publishedAt:desc"]},
           },
     })]);
 

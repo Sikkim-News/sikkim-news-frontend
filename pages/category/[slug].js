@@ -37,12 +37,13 @@ function CategoryPage({ categoryDetails }) {
 
 export default CategoryPage;
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params }) 
+{
   console.log(params.slug);
   const category = await Promise.all([
     fetchAPI("/categories", {
       filters: { slug: params.slug },
-      populate: { articles: { populate: { coverImage: { populate: "*" } } } },
+      populate: { articles: { populate: { coverImage: { populate: "*" } }, sort: ["publishedAt:desc"] }},
     }),
   ]);
 

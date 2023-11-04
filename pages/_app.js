@@ -18,6 +18,12 @@ function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
     <CacheProvider value={emotionCache}>
+      <Script
+  id="adsbygoogle-init"
+  strategy="afterInteractive"
+  crossOrigin="anonymous"
+  src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
+/>
       <Head>
         <title>Sikkim News</title>
         <link rel="icon" href="/favicon.ico" />
@@ -28,7 +34,6 @@ function MyApp(props) {
         <GlobalContext.Provider value={global.attributes}>
           <CssBaseline />
           <Component {...pageProps} />
-          <Script id="kunato_js-js" type="module" src="https://qx-cdn.sgp1.digitaloceanspaces.com/widget/thesikkimnews/widget.js"></Script>
         </GlobalContext.Provider>
       </ThemeProvider>
     </CacheProvider>
@@ -36,3 +41,17 @@ function MyApp(props) {
 }
 
 export default MyApp;
+
+/*
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
+     crossorigin="anonymous"></script>
+
+     // _app.js
+<Script
+  id="adsbygoogle-init"
+  strategy="afterInteractive"
+  crossOrigin="anonymous"
+  src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
+/>
+
+*/

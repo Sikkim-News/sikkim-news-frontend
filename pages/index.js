@@ -88,39 +88,39 @@ export async function getServerSideProps() {
     fetchAPI("/categories", {
       filters: { name: "trending" },
       populate: {
-        articles: { populate: { coverImage: { populate: "*" } } },
-        sort: ["publishedAt:desc"],
+        articles: {sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } } },
+        
       },
     }),
     fetchAPI("/categories", {
       filters: { name: "national" },
       populate: {
-        articles: { populate: { coverImage: { populate: "*" } } },
-        sort: ["publishedAt:desc"],
+        articles: {sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } } },
+        
       },
     }),
     fetchAPI("/categories", {
       filters: { name: "sports" },
       populate: {
-        articles: { populate: { coverImage: { populate: "*" } } },
-        sort: ["publishedAt:desc"],
+        articles: {sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } } },
+        
       },
     }),
     fetchAPI("/categories", {
       filters: { name: "local" },
       populate: {
-        articles: { populate: { coverImage: { populate: "*" } } },
-        sort: ["publishedAt:desc"],
+        articles: { sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } } },
       },
     }),
     fetchAPI("/categories", {
       filters: { name: "exclusives" },
       populate: {
-        articles: { populate: { coverImage: { populate: "*" } } },
-        sort: ["publishedAt:desc"],
+        articles: { sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } } },
       },
     }),
   ]);
+
+  console.log(exclusiveArticles.data[0].attributes.articles.data);
 
   return {
     props: {
