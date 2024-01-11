@@ -8,7 +8,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider } from "@emotion/react";
 import theme from "../config/theme";
 import createEmotionCache from "../config/createEmotionCache";
-import Script from "next/script"
+import Script from "next/script";
+import ReactGA from 'react-ga';
+import { useEffect } from 'react';
+
+ReactGA.initialize('G-JTGRWEJ5VG');
 
 export const GlobalContext = createContext({});
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -16,6 +20,11 @@ const clientSideEmotionCache = createEmotionCache();
 
 function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return (
     <CacheProvider value={emotionCache}>
       <Script
