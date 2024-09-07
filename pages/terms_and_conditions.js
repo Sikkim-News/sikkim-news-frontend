@@ -7,13 +7,13 @@ const terms_of_use = ()=>{
     <h2>Welcome to The Sikkim News</h2>
 
     <h3>Terms of Use</h3>
-    <>The terms "Client," "You," and "Your" refer to the user of this website, while "The Company," "Ourselves," "We," "Our," and "Us" refer to The Sikkim News.</>
+    <p>{`The terms "Client," "You," and "Your" refer to the user of this website, while "The Company," "Ourselves," "We," "Our," and "Us" refer to The Sikkim News.`}</p>
 
     <h3>Cookies</h3>
-    <>By accessing The Sikkim News, you consent to the use of cookies in accordance with The Sikkim News Privacy Policy. Cookies are employed to enhance the functionality of certain areas and improve user experience.</>
+    <p>By accessing The Sikkim News, you consent to the use of cookies in accordance with The Sikkim News Privacy Policy. Cookies are employed to enhance the functionality of certain areas and improve user experience.</p>
 
     <h3>Intellectual Property Rights</h3>
-    <>Unless otherwise stated, The Sikkim News and/or its licensors own the intellectual property rights for all materials on The Sikkim News. All rights are reserved, and you may access the content for personal use, subject to the restrictions outlined in these terms.</>
+    <p>Unless otherwise stated, The Sikkim News and/or its licensors own the intellectual property rights for all materials on The Sikkim News. All rights are reserved, and you may access the content for personal use, subject to the restrictions outlined in these terms.</p>
     <p>You must not:</p>
     <ul>
         <li>Republish material from The Sikkim News</li>
