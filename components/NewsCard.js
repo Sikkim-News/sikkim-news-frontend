@@ -5,10 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import styles from "@/styles/NewsCard.module.css";
 import Link from "next/link";
-
-const toSentenceCase = (strVal) => {
-  return strVal.toLowerCase().split(' ').map(function(word) { return (word.charAt(0).toUpperCase() + word.slice(1));}).join(' ');
-}
+import {toHeadlineByChars} from "./helpers"
 
 function NewsCard({ imageUrl, headline, createdAt, slug }) {
   return (
@@ -23,7 +20,7 @@ function NewsCard({ imageUrl, headline, createdAt, slug }) {
           />
           <CardContent className={styles.cardContent}>
             <p>{new Date(createdAt).toDateString()}</p>
-            <p className={styles.headline}>{toSentenceCase(headline)}</p>
+            <p className={styles.headline}>{toHeadlineByChars(headline,100)}</p>
           </CardContent>
         </CardActionArea>
       </Card>

@@ -1,0 +1,12 @@
+.mainDiv{
+    margin: 20px auto;
+    padding: 50px 60px;
+}
+
+.mainDiv h3{
+    margin-top: 20px;
+}
+
+.mainDiv p{
+    margin-top: 10px;
+}

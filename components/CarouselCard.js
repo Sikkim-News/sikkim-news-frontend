@@ -1,19 +1,20 @@
 import { Card, CardMedia } from "@mui/material";
 import Link from "next/link";
+import { toHeadlineByChars } from "./helpers";
 
 export default function CarouselCard({ article }) {
   return (
     <Link href={`/${article.attributes.slug}`} passHref>
       <Card
         sx={{
-          height: "480px",
+          height: "500px",
           borderRadius: "0",
           cursor: "pointer",
         }}
       >
         <CardMedia
           component="img"
-          height="480"
+          height="500"
           image={
             article.attributes.coverImage.image.data.attributes.formats.small
               ?.url
@@ -25,12 +26,11 @@ export default function CarouselCard({ article }) {
             padding: "10px 5px 5px 5px",
             position: "absolute",
             bottom: 0,
-            width: "100%",
             color: "white",
             backgroundColor: "rgba(0,0,0,0.5)",
           }}
         >
-          <p style={{ fontSize: "1.4rem" }}>{article.attributes.title}</p>
+          <p style={{ fontSize: "1.4rem", textAlign: "justify" }}>{toHeadlineByChars(article.attributes.title, 130)}</p>
         </div>
       </Card>
     </Link>

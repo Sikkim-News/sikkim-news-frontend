@@ -20,28 +20,17 @@ function MyApp(props) {
   return (
     <CacheProvider value={emotionCache}>
 
-      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-JTGRWEJ5VG"></Script>
-      <Script id="google-analytics" strategy="afterInteractive">
-    {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-JTGRWEJ5VG');
-    `}
-</Script>
-
-      <Script
-  id="adsbygoogle-init"
-  strategy="afterInteractive"
-  crossOrigin="anonymous"
-  src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
-/>
       <Head>
         <title>Sikkim News</title>
         <link rel="icon" href="/favicon.ico" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
-     crossOrigin="anonymous"></script>
+
+           <Script
+            async={true}
+            strategy="lazyOnload"
+            crossOrigin="anonymous"
+            src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"/>
       </Head>
+
       <ThemeProvider theme={theme}>
         <GlobalContext.Provider value={global.attributes}>
           <CssBaseline />

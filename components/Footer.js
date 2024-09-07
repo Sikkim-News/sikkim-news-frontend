@@ -20,8 +20,8 @@ function FooterLinks() {
   return (
     <div className={styles.footerLinks}>
       <div className={styles.footerLinks__cols}>
-        <Link href="/">
-          <a>Terms of Use</a>
+        <Link href="/terms_and_conditions">
+          <a>Terms & Conditions</a>
         </Link>
         <Link href="/">
           <a>Privacy Policy</a>

@@ -15,7 +15,6 @@ function CategoryPage({ categoryDetails }) {
         <title>{`Sikkim News - ${router.query.slug.toUpperCase()}`}</title>
       </Head>
       {categoryDetails.attributes.articles.data.length != 0 ? (
-        <>
           <NewsGrid
             articles={categoryDetails.attributes.articles.data}
             header={
@@ -25,7 +24,6 @@ function CategoryPage({ categoryDetails }) {
             }
             isPageGrid
           />
-        </>
       ) : (
         <p className={styles.notAvailable}>
           No Results Found for {router.query.slug.toUpperCase()}
