@@ -25,7 +25,7 @@ export default function HeaderNav() {
           key={idx}
           href={`/category/${category.replace(/ /g, "").toLowerCase()}`}
           passHref
-        >
+          legacyBehavior>
           <Button
             variant="text"
             sx={{

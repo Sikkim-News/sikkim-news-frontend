@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function ViewMore({ className, slug }) {
   return (
-    <Link href={`/category/${slug}`} passHref>
+    <Link href={`/category/${slug}`} passHref legacyBehavior>
       <Button
         className={className}
         sx={{

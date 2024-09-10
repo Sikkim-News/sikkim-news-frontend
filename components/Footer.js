@@ -21,18 +21,18 @@ function FooterLinks() {
     <div className={styles.footerLinks}>
       <div className={styles.footerLinks__cols}>
         <Link href="/terms_and_conditions">
-          <a>Terms & Conditions</a>
+          Terms & Conditions
         </Link>
         <Link href="/">
-          <a>Privacy Policy</a>
+          Privacy Policy
         </Link>
       </div>
       <div className={styles.footerLinks__cols}>
         <Link href="/contact">
-          <a>Contact Us</a>
+          Contact Us
         </Link>
         <Link href="/">
-          <a>Advertise With Us</a>
+          Advertise With Us
         </Link>
       </div>
     </div>

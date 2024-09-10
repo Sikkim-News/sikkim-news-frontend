@@ -64,8 +64,8 @@ export default function NewsPage({ article, categoryArticles }) {
 
         <div className={`${styles.image_wrapper}`}>
           <Image
-            width={400}
-            height={200}
+            width={900}
+            height={400}
             // layout="fill"
             src={
               article.attributes.coverImage.image.data.attributes.formats.small
@@ -89,7 +89,7 @@ export default function NewsPage({ article, categoryArticles }) {
       </Box>
       <SocialMediaNewsShare article={article} />
 
-      <HorizontalNewsGrid articles={categoryArticles.slice(0,6)} header={`Explore More Stories`} categorySlug={article.attributes.categories.data[0].attributes.slug}></HorizontalNewsGrid>
+      <HorizontalNewsGrid articles={categoryArticles.slice(0,6)} header={`Explore More Stories`} categorySlug={article.attributes.categories.data[0].attributes.slug} />
     </Layout>
   );
 }

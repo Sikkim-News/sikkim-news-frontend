@@ -19,7 +19,7 @@ export default function Header() {
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ cursor: "pointer" }}>
-          <Link href="/" passHref={true}>
+          <Link href="/">
             <Image
               src="/resources/logo-original.png"
               width={60}

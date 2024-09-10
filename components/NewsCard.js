@@ -9,7 +9,7 @@ import {toHeadlineByChars} from "./helpers"
 
 function NewsCard({ imageUrl, headline, createdAt, slug }) {
   return (
-    <Link href={`/${slug}`} passHref>
+    <Link href={`/${slug}`} passHref legacyBehavior>
       <Card className={styles.card}>
         <CardActionArea className={styles.cardActionArea}>
           <CardMedia

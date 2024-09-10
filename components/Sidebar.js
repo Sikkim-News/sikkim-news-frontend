@@ -47,7 +47,7 @@ export default function Sidebar() {
             key={text}
             href={`/category/${text.replace(/ /g, "").toLowerCase()}`}
             passHref
-          >
+            legacyBehavior>
             <ListItemButton sx={{ textAlign: "center" }}>
               <ListItemText
                 primaryTypographyProps={{

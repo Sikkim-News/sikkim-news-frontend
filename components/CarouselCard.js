@@ -4,7 +4,7 @@ import { toHeadlineByChars } from "./helpers";
 
 export default function CarouselCard({ article }) {
   return (
-    <Link href={`/${article.attributes.slug}`} passHref>
+    <Link href={`/${article.attributes.slug}`} passHref legacyBehavior>
       <Card
         sx={{
           height: "500px",
@@ -30,7 +30,7 @@ export default function CarouselCard({ article }) {
             backgroundColor: "rgba(0,0,0,0.5)",
           }}
         >
-          <p style={{ fontSize: "1.4rem", textAlign: "justify" }}>{toHeadlineByChars(article.attributes.title, 130)}</p>
+          <p style={{ fontSize: "1.4rem", textAlign: "justify", fontFamily:"Poppins" }}>{toHeadlineByChars(article.attributes.title, 130)}</p>
         </div>
       </Card>
     </Link>
