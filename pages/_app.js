@@ -23,12 +23,12 @@ function MyApp(props) {
       <Head>
         <title>Sikkim News</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Script
+        <Script
             async={true}
             crossOrigin="anonymous"
             src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"/>
-
+      </Head>
+      
       <ThemeProvider theme={theme}>
         <GlobalContext.Provider value={global.attributes}>
           <CssBaseline />

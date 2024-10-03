@@ -4,7 +4,7 @@ import Image from "next/image";
 import Sidebar from "./Sidebar";
 import HeaderNav from "./HeaderNav";
 import Link from "next/link";
-import MountainImage from "./mountains.png";
+import MountainImage from "../public/resources/mountains.png";
 
 export default function Header() {
   return (

@@ -79,24 +79,19 @@ export async function getServerSideProps() {
           populate: { coverImage: { populate: "*" } },
           sort: ["publishedAt:desc"],
         },
-      },
-      pagination: {
-        page: 1,
-        pageSize: 4,
+        
       },
     }),
     fetchAPI("/categories", {
       filters: { name: "trending" },
       populate: {
-        articles: {sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } } },
-        
+        articles: {sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } }}
       },
     }),
     fetchAPI("/categories", {
       filters: { name: "national" },
       populate: {
         articles: {sort: ["publishedAt:desc"], populate: { coverImage: { populate: "*" } } },
-        
       },
     }),
     fetchAPI("/categories", {
@@ -120,7 +115,7 @@ export async function getServerSideProps() {
     }),
   ]);
 
-  console.log(exclusiveArticles.data[0].attributes.articles.data);
+  // console.log(bannerArticles.data[0].attributes.articles.data);
 
   return {
     props: {
