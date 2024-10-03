@@ -3,7 +3,7 @@ import styles from "@/styles/TermsofUse.module.css";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
-const terms_of_use = ()=>{
+const TermsofUse = ()=>{
     const [content, setContent] = useState('');
     const filename = "/termsnconditions.md"
 
@@ -19,4 +19,4 @@ const terms_of_use = ()=>{
     </Layout>)
 };
 
-export default terms_of_use;
+export default TermsofUse;
