@@ -1,3 +1,4 @@
+'use client';
 import Layout from "@/components/Layout";
 import SectionHeader from "@/components/SectionHeader";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -7,14 +8,15 @@ import InterestsIcon from "@mui/icons-material/Interests";
 
 import styles from "@/styles/ContactPage.module.css";
 import SocialMedia from "@/components/SocialMedia";
-import Head from "next/head";
+
+// export const metadata= {
+//   title: 'Contact Us',
+//   description: 'Contact us for any queries or suggestions.'
+// }
 
 const contact = () => {
   return (
     <Layout>
-      <Head>
-        <title>Contact Us</title>
-      </Head>
       <div>
         <SectionHeader title="Contact Us" />
 

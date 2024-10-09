@@ -9,21 +9,21 @@ import MountainImage from "../public/resources/mountains.png";
 export default function Header() {
   return (
     <AppBar
-      position="static"
-      sx={{
-        height: "65px",
-        backgroundImage: `url(${MountainImage.src})`,
-        backgroundPosition: "50% 22%",
-        // backgroundSize: "cover",
-      }}
-    >
+    elevation={0}
+    sx={
+      {
+        backgroundColor: "transparent",
+        borderBottom: "3px solid #000",
+      }
+    }
+      position="static">
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ cursor: "pointer" }}>
           <Link href="/">
             <Image
               src="/resources/logo-original.png"
-              width={60}
-              height={60}
+              width={70}
+              height={70}
               alt="logo"
             />
           </Link>

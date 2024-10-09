@@ -1,9 +1,11 @@
+'use client';
+
 import Layout from "@/components/Layout";
 import styles from "@/styles/TermsofUse.module.css";
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
-const TermsofUse = ()=>{
+export default function TermsandConditions() {
     const [content, setContent] = useState('');
     const filename = "/termsnconditions.md"
 
@@ -17,6 +19,4 @@ const TermsofUse = ()=>{
     return (<Layout style={styles.mainDiv}>
         <ReactMarkdown>{content}</ReactMarkdown>
     </Layout>)
-};
-
-export default TermsofUse;
+}
