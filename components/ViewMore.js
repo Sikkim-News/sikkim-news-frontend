@@ -1,20 +1,10 @@
-import { Button } from "@mui/material";
 import Link from "next/link";
+import styles from "@/styles/Sectionheader.module.css";
 
 export default function ViewMore({ className, slug }) {
   return (
-    <Link href={`/category/${slug}`} passHref legacyBehavior>
-      <Button
-        className={className}
-        sx={{
-          width: "100%",
-          fontFamily: "Poppins",
-          color: "black",
-          textAlign: "center",
-        }}
-      >
-        View More
-      </Button>
+    <Link href={`/category/${slug}`} className={styles.viewMoreLink}>
+      View More
     </Link>
   );
 }

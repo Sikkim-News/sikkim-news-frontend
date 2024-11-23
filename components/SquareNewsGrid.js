@@ -2,7 +2,6 @@ import React from "react";
 import NewsCard from "./NewsCard";
 import SectionHeader from "./SectionHeader";
 import styles from "@/styles/SquareNewsGrid.module.css";
-import ViewMore from "./ViewMore";
 
 function SquareNewsGrid({
   isPageGrid,
@@ -13,7 +12,7 @@ function SquareNewsGrid({
 }) {
   return (
     <div className={styles.newsGrid}>
-      <SectionHeader title={header} />
+      <SectionHeader title={header} viewMore={viewMore} categorySlug={categorySlug}/>
       <div
         className={`${styles.cardGrid} ${
           isPageGrid ? styles.pageSquareGrid : styles.squareGrid
@@ -33,11 +32,6 @@ function SquareNewsGrid({
           />
         ))}
       </div>
-      {viewMore ? (
-        <ViewMore className={styles.viewMore} slug={categorySlug} />
-      ) : (
-        <></>
-      )}
     </div>
   );
 }

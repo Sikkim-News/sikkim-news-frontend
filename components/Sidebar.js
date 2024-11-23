@@ -1,5 +1,5 @@
 import React from "react";
-import SocialMedia from "./SocialMedia";
+import SocialMedia from "@/helperComponents/SocialMedia";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";

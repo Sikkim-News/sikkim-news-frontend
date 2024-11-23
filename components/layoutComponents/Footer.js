@@ -1,6 +1,7 @@
+"use client";
 import styles from "@/styles/Footer.module.css";
 import Link from "next/link";
-import SocialMedia from "./SocialMedia";
+import SocialMedia from "@/helperComponents/SocialMedia";
 
 export default function Footer() {
   return (

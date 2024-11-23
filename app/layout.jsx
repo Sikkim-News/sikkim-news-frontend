@@ -1,17 +1,25 @@
 import "../styles/globals.css";
-
+// import Header from "@/components/Header";
+import styles from "../styles/Layout.module.css";
+import Footer from "@/layoutComponents/Footer";
+import Header from "@/layoutComponents/Head";
+// import Header from "@/components/Header";
 
 export const metadata = {
-  title: 'Sikkim News',
-  description: 'A news website for Sikkim and nearby areas.',
-}
+	title: "Sikkim News",
+	description: "A news website for Sikkim and nearby areas.",
+};
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  )
+	return (
+		<html lang="en">
+			<body>
+				<Header />
+				<div className={`${styles.layout__children}`}>{children}</div>
+				<Footer />
+			</body>
+		</html>
+	);
 }
 
 // import { createContext } from "react";
@@ -38,7 +46,7 @@ export default function RootLayout({ children }) {
 //             async={true}
 //             crossOrigin="anonymous"
 //             src= "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"/>
-      
+
 //         <GlobalContext.Provider value={global.attributes}>
 //           <CssBaseline />
 //           <Component {...pageProps} />

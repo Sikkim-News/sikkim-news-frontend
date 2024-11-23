@@ -1,12 +1,68 @@
-.mainDiv{
-    margin: 20px auto;
-    padding: 50px 60px;
+.mainDiv {
+  margin: 50px auto;
+  padding: 30px 40px;
+  max-width: 1000px;
+  text-align: justify;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
 }
 
-.mainDiv h3{
-    margin-top: 20px;
+.mainDiv::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #ba181b, #ff4d6d);
 }
 
-.mainDiv p{
-    margin-top: 10px;
+.mainDiv h1, .mainDiv h2, .mainDiv h3 {
+  font-weight: 600;
+  color: #ba181b;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.mainDiv h1 {
+  font-size: 2em;
+}
+
+.mainDiv h2 {
+  font-size: 1.75em;
+}
+
+.mainDiv h3 {
+  font-size: 1.5em;
+}
+
+.mainDiv p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 1em;
+  line-height: 1.8;
+  color: #2a2a2a;
+}
+
+.mainDiv a {
+  color: #ba181b;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.mainDiv a:hover {
+  color: #e63946;
+}
+
+@media (max-width: 768px) {
+  .mainDiv {
+    margin: 30px 20px;
+    padding: 20px;
+  }
+
+  .mainDiv h1 { font-size: 1.75em; }
+  .mainDiv h2 { font-size: 1.5em; }
+  .mainDiv h3 { font-size: 1.25em; }
+  .mainDiv p { font-size: 1em; }
 }

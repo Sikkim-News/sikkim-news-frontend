@@ -1,10 +1,10 @@
+"use client";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Image from "next/image";
 import Sidebar from "./Sidebar";
 import HeaderNav from "./HeaderNav";
 import Link from "next/link";
-import MountainImage from "../public/resources/mountains.png";
 
 export default function Header() {
   return (

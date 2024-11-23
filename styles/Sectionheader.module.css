@@ -1,12 +1,54 @@
+.sectionHeaderContainer {
+  margin: 2rem 0 1.5rem 0;
+  position: relative;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
 .sectionHeader {
   background-color: #161a1d;
   color: white;
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
   width: max-content;
-  padding: 10px 15px 10px 10px;
-  border-radius: 0 0 15px 0;
-  font-size: 1.2rem;
-  text-align: left;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
   font-weight: 500;
-  z-index: 10;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.sectionHeader:hover {
+  background-color: #ba181b;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(186, 24, 27, 0.2);
+}
+
+.viewMoreLink {
+  color: #161a1d;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.viewMoreLink:hover {
+  color: #ba181b;
+  background-color: rgba(186, 24, 27, 0.1);
+  transform: translateX(2px);
+}
+
+.sectionHeaderUnderline {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, #ba181b 0%, rgba(186, 24, 27, 0.1) 100%);
+  margin-top: 0.5rem;
 }

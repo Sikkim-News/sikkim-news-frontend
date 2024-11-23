@@ -1,22 +1,22 @@
 .LayoutStyle {
-  align-self: center;
+	align-self: center;
 }
 
 .HomePage h1 {
-  display: block;
-  color: darkblue;
+	display: block;
+	color: darkblue;
 }
 
-@media only screen and (min-width: 750px) {
-  .HomePage__arrangement {
-    display: flex;
-  }
+@media screen and (min-width: 750px) {
+	.HomePage__arrangement {
+		display: flex;
+	}
 
-  .HomePage__carousel {
-    width: 80%;
-  }
+	.HomePage__carousel {
+		width: 80%;
+	}
 
-  .HomePage__newsArticles {
-    margin-left: 15px;
-  }
+	.HomePage__newsArticles {
+		margin-left: 15px;
+	}
 }

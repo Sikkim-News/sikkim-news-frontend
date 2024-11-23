@@ -40,10 +40,21 @@ export default function SocialMedia({ dark }) {
     >
       {socialMediaLinks.map((element, idx) => (
         <IconButton
-          style={dark ? { color: "#fff" } : { color: "#000" }}
+          style={{
+            color: dark ? "#fff" : "#000",
+            transition: "color 0.3s ease, transform 0.3s ease",
+          }}
           key={idx}
           href={element.url}
           target="_blank"
+          onMouseOver={(e) => {
+            e.currentTarget.style.color = "#ba181b";
+            e.currentTarget.style.transform = "scale(1.2)";
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.color = dark ? "#fff" : "#000";
+            e.currentTarget.style.transform = "scale(1)";
+          }}
         >
           {element.icon}
         </IconButton>
