@@ -27,7 +27,6 @@ export default function Sidebar() {
   const toggleDrawer = (open) => () => {
     setIsOpen(open);
   };
-
   const list = () => (
     <Box sx={{ width: "70vw" }} role="presentation">
       <Typography

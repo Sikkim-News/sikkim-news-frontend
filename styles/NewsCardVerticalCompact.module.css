@@ -1,0 +1,90 @@
+.card {
+	background: white;
+	border: 1px solid #eee;
+	border-radius: 6px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	max-width: 100%;
+}
+
+.card:hover {
+	transform: translateY(-4px);
+	cursor: pointer;
+}
+
+.imageContainer {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16/10;
+	max-height: 280px;
+}
+
+.imageContainer img {
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.card:hover .imageContainer img {
+	transform: scale(1.05);
+}
+
+.content {
+	padding: 0.6rem;
+}
+
+.category {
+	color: #ba181b;
+	font-size: 0.75rem;
+	font-weight: 500;
+	margin-bottom: 0.25rem;
+	text-transform: uppercase;
+}
+
+.headline {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #161a1d;
+	line-height: 1.25;
+	margin: 0 0 0.25rem 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.excerpt {
+	color: #666;
+	font-size: 0.85rem;
+	line-height: 1.35;
+	margin: 0 0 0.35rem 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.meta {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 0.35rem;
+	padding-top: 0.35rem;
+	border-top: 1px solid #eee;
+}
+
+.author {
+	color: #ba181b;
+	font-size: 0.75rem;
+	font-weight: 500;
+}
+
+.date {
+	color: #666;
+	font-size: 0.7rem;
+}
+
+@media screen and (max-width: 768px) {
+	.content {
+		padding: 0.5rem;
+	}
+}

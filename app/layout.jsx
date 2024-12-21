@@ -1,9 +1,7 @@
 import "../styles/globals.css";
-// import Header from "@/components/Header";
 import styles from "../styles/Layout.module.css";
 import Footer from "@/layoutComponents/Footer";
 import Header from "@/layoutComponents/Head";
-// import Header from "@/components/Header";
 
 export const metadata = {
 	title: "Sikkim News",
@@ -13,9 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body>
+			<body className={styles.layout}>
 				<Header />
-				<div className={`${styles.layout__children}`}>{children}</div>
+				<main className={styles.layout__children}>{children}</main>
 				<Footer />
 			</body>
 		</html>

@@ -13,14 +13,25 @@
 .sectionHeader {
   background-color: #161a1d;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Alegreya', sans-serif;
   width: max-content;
-  padding: 0.5rem 1.2rem;
+  height: max-content;
+  padding: 5px 15px 5px 10px;
   font-size: 1.3rem;
   letter-spacing: 0.05rem;
-  font-weight: 500;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  font-weight: 400;
+  z-index: 10;
+  position: relative;
+}
+
+.sectionHeader::after {
+  content: '';
+  position: absolute;;
+  height: 2px;
+  background-color: #000;
+  bottom: -2px;
+  left: 0;
+  z-index: -1;
 }
 
 .sectionHeader:hover {

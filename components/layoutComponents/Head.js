@@ -4,8 +4,8 @@ import styles from "@/styles/Head.module.css";
 import * as FaIcons from "react-icons/fa6";
 import { useState } from "react";
 import Link from "next/link";
-import HeaderNav from "./HeaderNav";
-import NavMenu from "./NavMenu";
+import HeaderNav from "../helperComponents/HeaderNav";
+import NavMenu from "../helperComponents/NavMenu";
 
 export default function Header() {
 	const [sidebar, setSidebar] = useState(false);
@@ -25,6 +25,9 @@ export default function Header() {
 					/>
 				</Link>
 				<HeaderNav />
+				<Link href="/testComp" className={styles.header__contact}>
+					Contact Us
+				</Link>
 				<div className={`${styles.navbar}`}>
 					<Link href="#" className={`${styles.menu__bars}`}>
 						<FaIcons.FaBars onClick={showSidebar} size={25} />
