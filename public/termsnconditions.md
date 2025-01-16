@@ -47,7 +47,7 @@ The Sikkim News is not responsible for content on external websites linked to it
 
 ### Privacy
 
-Please refer to The Sikkim News Privacy Policy for information on how personal data is handled.
+Please refer to The Sikkim News [Privacy Policy](https://thesikkimnews.com/privacy_policy) for information on how personal data is handled.
 
 ### Reservation of Rights
 

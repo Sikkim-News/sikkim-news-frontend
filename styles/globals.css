@@ -16,7 +16,10 @@ body {
 }
 
 p,
-span {
+span,
+ul,
+ol,
+li {
 	font-family: "Source Sans 3", serif;
 }
 
