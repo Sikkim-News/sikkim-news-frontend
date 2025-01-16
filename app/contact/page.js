@@ -8,8 +8,6 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import Link from "next/link";
-import { IconButton } from "@mui/material";
 import SocialMedia from "@/helperComponents/SocialMedia";
 
 // export const metadata= {
@@ -72,7 +70,7 @@ const contact = () => {
 			<div className={styles.socialMediaSection}>
 				<h2>Connect with us</h2>
 				<p>Follow us on our social media platforms to stay updated:</p>
-				<div className={styles.socialIcons}>
+				<div className={`${styles.socialIcons}`}>
 					<SocialMedia dark={false} />
 					{/* {socialMediaLinks.map((element, idx) => (
 						<IconButton

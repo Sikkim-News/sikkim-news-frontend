@@ -73,27 +73,6 @@
 	transition: transform 0.2s, color 0.2s;
 }
 
-.iconHover:hover {
-	color: #3b5998; /* Example for Facebook */
-	transform: scale(1.2);
-}
-
-.iconHover:hover:nth-child(2) {
-	color: #ff0000; /* Example for YouTube */
-}
-
-.iconHover:hover:nth-child(3) {
-	color: #1da1f2; /* Example for Twitter */
-}
-
-.iconHover:hover:nth-child(4) {
-	color: #0088cc; /* Example for Telegram */
-}
-
-.iconHover:hover:nth-child(5) {
-	color: #e1306c; /* Example for Instagram */
-}
-
 .extraSection {
 	text-align: center;
 	padding: 20px;
@@ -115,4 +94,12 @@
 
 .contactButton:hover {
 	background-color: #45a049;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 768px) {
+	.contactSection {
+		flex-direction: column;
+		gap: 1rem;
+	}
 }
