@@ -14,7 +14,7 @@ export default function NewsCardFlat({
 	slug,
 }) {
 	return (
-		<Link href={`/${slug}`}>
+		<Link href={`/${slug}`} passHref>
 			<div className={styles.newsCard}>
 				<div className={styles.imageContainer}>
 					<Image

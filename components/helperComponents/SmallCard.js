@@ -12,7 +12,7 @@ export default function SmallCard({
 	slug,
 }) {
 	return (
-		<Link href={`/${slug}`}>
+		<Link href={`/${slug}`} passHref>
 			<div className={styles.card}>
 				<div className={styles.imageContainer}>
 					<Image

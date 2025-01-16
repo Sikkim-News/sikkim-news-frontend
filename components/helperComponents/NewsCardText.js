@@ -11,7 +11,7 @@ export default function NewsCardText({
 	author,
 }) {
 	return (
-		<Link href={`/${slug}`}>
+		<Link href={`/${slug}`} passHref>
 			<div className={styles.newsCardOnlyText}>
 				<div className={styles.newsCardHeader}>
 					<h2 className={styles.headlineOnly}>{headline}</h2>

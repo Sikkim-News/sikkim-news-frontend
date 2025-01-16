@@ -13,7 +13,7 @@ export default function NewsCardVertical({
 	slug,
 }) {
 	return (
-		<Link href={`/${slug}`}>
+		<Link href={`/${slug}`} passHref>
 			<div className={styles.newsCardVertical}>
 				<div className={styles.imageContainer}>
 					<Image

@@ -15,7 +15,7 @@ export default function Header() {
 	return (
 		<>
 			<header className={styles.header__main}>
-				<Link href="/">
+				<Link href="/" passHref>
 					<Image
 						src="/resources/logo-original.png"
 						width={80}
@@ -28,7 +28,7 @@ export default function Header() {
 				{/* <Link href="/home" className={styles.header__contact}>
 					Contact Us
 				</Link> */}
-				<div className={`${styles.navbar}`}>
+				<div className={`${styles.navbar}`} passHref>
 					<Link href="#" className={`${styles.menu__bars}`}>
 						<FaIcons.FaBars onClick={showSidebar} size={25} />
 					</Link>

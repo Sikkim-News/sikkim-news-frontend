@@ -13,7 +13,7 @@ export default function NewsCardVerticalAlt({
 	slug,
 }) {
 	return (
-		<Link href={`/${slug}`}>
+		<Link href={`/${slug}`} passHref>
 			<div className={styles.card}>
 				<div className={styles.imageContainer}>
 					<Image
