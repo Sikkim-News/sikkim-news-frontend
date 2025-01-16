@@ -39,9 +39,9 @@ const contact = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.heroSection}>
-				<h1 className={styles.title}>We'd love to hear from you!</h1>
+				<h1 className={styles.title}>We would love to hear from you!</h1>
 				<p className={styles.subtitle}>
-					Reach out to us anytime, and we'll respond as soon as possible.
+					Reach out to us anytime, and we will respond as soon as possible.
 				</p>
 			</div>
 
