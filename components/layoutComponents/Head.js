@@ -25,9 +25,9 @@ export default function Header() {
 					/>
 				</Link>
 				<HeaderNav />
-				<Link href="/testComp" className={styles.header__contact}>
+				{/* <Link href="/home" className={styles.header__contact}>
 					Contact Us
-				</Link>
+				</Link> */}
 				<div className={`${styles.navbar}`}>
 					<Link href="#" className={`${styles.menu__bars}`}>
 						<FaIcons.FaBars onClick={showSidebar} size={25} />
@@ -36,9 +36,9 @@ export default function Header() {
 			</header>
 
 			<div className={styles.header__underline} />
-			
-			<div 
-				className={`${styles.overlay} ${sidebar ? styles.active : ''}`}
+
+			<div
+				className={`${styles.overlay} ${sidebar ? styles.active : ""}`}
 				onClick={closeSidebar}
 			/>
 			<NavMenu sidebar={sidebar} closeSidebar={closeSidebar} />

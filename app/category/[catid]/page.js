@@ -1,27 +1,23 @@
 import { fetchAPI } from "lib/api";
 import GridPrint from "./GridPrint";
+import {
+	extractDatafromArticles,
+	getDataforCategory,
+} from "app/helperFunctions";
 
 export const metadata = {
-  title: "Sikkim News - Categories",
-  description: "Sikkim News - Categories",
-};
-
-const getData = async (slug) => {
-  const category = await Promise.all([
-    fetchAPI("/categories", {
-      filters: { slug: slug },
-      populate: { articles: { populate: { coverImage: { populate: "*" } }, sort: ["publishedAt:desc"] }},
-    }),
-  ]);
-  console.log(category[0].data[0]);
-
-  return category[0].data[0] ? category[0].data[0] : null;
+	title: "Sikkim News - Categories",
+	description: "Sikkim News - Categories",
 };
 
 export default async function CategoryPage({ params }) {
-  const categoryDetails = await getData(params.catid);
+	const categoryDetails = await getDataforCategory(params.catid);
+	const allArticles = await extractDatafromArticles(
+		categoryDetails.attributes.articles.data
+	);
 
-  return (
-      <GridPrint categoryDetails={categoryDetails} />
-  );
+	console.log(allArticles);
+	return (
+		<GridPrint category={allArticles[0].category} articles={allArticles} />
+	);
 }

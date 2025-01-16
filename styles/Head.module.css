@@ -5,12 +5,20 @@
 	background: #fff;
 	padding: 1px;
 	position: relative;
-	margin-bottom: 10px;
+	background-image: linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0) 0%,
+			rgba(255, 255, 255, 1) 100%
+		),
+		url("https://upload.wikimedia.org/wikipedia/commons/4/4d/Panorama_Kangchenjunga_from_Darjeeling.jpg");
+	background-size: cover;
+	/* background-position: 0 0px; */
+	/* margin-bottom: 0.5rem; */
 	z-index: 1;
 }
 
-.header__main::after{
-	content: '';
+.header__main::after {
+	content: "";
 	position: absolute;
 	width: 100vw;
 	height: 7px;
@@ -78,11 +86,23 @@
 	margin: 0.5rem 0;
 	border-radius: 8px;
 	transition: all 0.3s ease;
-	font-size: 1.4em;
+	font-size: 1.3em;
 	display: block;
 	color: #000;
 	font-weight: 500;
 	text-decoration: none;
+}
+
+.menu__item:first-child:hover {
+	background: linear-gradient(
+			rgba(0, 0, 0, 0.1),
+			/* Semi-transparent black */ rgba(0, 0, 0, 0.4)
+		),
+		url("https://photos.smugmug.com/Destinations/India-Sikkim-Gangtok/i-4WhTQqL/3/KNZKP9x9gnm3QnfTtZC4Wwpv8SrBgC9SfpHDkj3fT/XL/18110562-Pano-XL.jpg");
+	color: #fff;
+	background-size: cover;
+	transform: translateX(5px);
+	box-shadow: 0 -1px 3px rgba(186, 24, 27, 0.2);
 }
 
 .menu__item:hover {
@@ -96,7 +116,14 @@
 	width: 100%;
 	padding: 1.5rem;
 	margin: 0;
-	background: linear-gradient(to right, #ba181b 0%, #e63946 100%);
+	/* background: linear-gradient(to right, #ba181b 0%, #e63946 100%); */
+	background-image: linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0) 0%,
+			rgba(255, 255, 255, 1) 100%
+		),
+		url("https://www.sikkimtourismindia.com/blog/wp-content/uploads/2022/12/player-flags-sikkim.jpg");
+	background-size: cover;
 	color: white;
 	box-shadow: 0 -1px 3px rgba(186, 24, 27, 0.2);
 }
@@ -109,7 +136,7 @@
 
 .nav__top_logo img {
 	border-radius: 8px;
-	background: white;
+	/* background: white; */
 	/* padding: 5px; */
 	box-shadow: 0 -1px 3px rgba(186, 24, 27, 0.2);
 }

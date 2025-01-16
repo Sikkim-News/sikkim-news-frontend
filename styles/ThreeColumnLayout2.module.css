@@ -1,0 +1,42 @@
+.featuredSections {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.trendingGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+.trendingUpdates {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.regionalGrid {
+	display: grid;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+/* Responsive Design */
+/* @media (max-width: 1024px) {
+	.trendingGrid {
+		grid-template-columns: 1fr 1fr;
+	}
+} */
+
+@media (max-width: 768px) {
+	.featuredSections {
+		grid-template-columns: 1fr;
+	}
+	.trendingGrid {
+		grid-template-columns: 1fr;
+	}
+}

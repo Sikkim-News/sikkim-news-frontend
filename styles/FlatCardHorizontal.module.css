@@ -1,0 +1,23 @@
+.latestNews {
+	margin-bottom: 2rem;
+}
+
+.latestGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+	.latestGrid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 768px) {
+	.latestGrid {
+		grid-template-columns: 1fr;
+	}
+}

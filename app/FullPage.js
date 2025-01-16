@@ -1,66 +1,52 @@
 "use client";
-import SquareNewsGrid from "@/components/SquareNewsGrid";
-import HorizontalNewsGrid from "@/components/HorizontalNewsGrid";
 import styles from "@/styles/HomePage.module.css";
+import HomeTopLayout from "@/layoutComponents/HomeTopLayout";
+import ThreeColumnLayout from "@/layoutComponents/ThreeColumnLayout";
+import FlatCardHorizontal from "@/layoutComponents/FlatCardHorizontal";
+import ThreeColumnLayout2 from "@/layoutComponents/ThreeColumnLayout2";
 
-export default function FullPage({
-	bannerArticles,
-	trendingArticles,
-	nationalArticles,
-	sportsArticles,
-	localArticles,
-	exclusiveArticles,
-}) {
+export default function FullPage(props) {
+	const articlesWithCategory = {
+		bannerArticles: {
+			category: "Trending Now",
+			articles: props.bannerArticles,
+		},
+		trendingArticles: {
+			category: "Trending Now",
+			articles: props.trendingArticles,
+		},
+		nationalArticles: {
+			category: "National Updates",
+			articles: props.nationalArticles,
+		},
+		sportsArticles: {
+			category: "Sports Updates",
+			articles: props.sportsArticles,
+		},
+		localArticles: {
+			category: "Local Updates",
+			articles: props.localArticles,
+		},
+		exclusiveArticles: {
+			category: "SN Exclusives",
+			articles: props.exclusiveArticles,
+		},
+		topArticles: {
+			category: "Latest Updates",
+			articles: props.topArticles,
+		},
+	};
 	return (
 		<div className={styles.HomePage}>
-			<div className={styles.HomePage__arrangement}>
-				<div className={styles.HomePage__carousel}>
-					{/* <NewCarousel articles={bannerArticles.slice(0, 6)} /> */}
-					<div className={styles.HomePage__newsArticles}>
-						<SquareNewsGrid
-							home
-							articles={bannerArticles.slice(0, 4)}
-							header="Trending in Sikkim"
-							categorySlug="trending"
-						/>
-					</div>
-				</div>
-				<div className={styles.HomePage__newsArticles}>
-					<SquareNewsGrid
-						home
-						articles={trendingArticles.slice(0, 4)}
-						header="Trending in Sikkim"
-						categorySlug="trending"
-					/>
-				</div>
-			</div>
-
-			<HorizontalNewsGrid
-				articles={localArticles.slice(0, 4)}
-				header="Local Headlines"
-				categorySlug="local"
-				overflow
+			<HomeTopLayout
+				articles1={articlesWithCategory.bannerArticles}
+				articles2={articlesWithCategory.exclusiveArticles}
 			/>
-
-			<HorizontalNewsGrid
-				articles={nationalArticles.slice(0, 4)}
-				header="National News"
-				categorySlug="national"
-				overflow
-			/>
-
-			<HorizontalNewsGrid
-				articles={sportsArticles.slice(0, 4)}
-				header="Sports and Entertainment"
-				categorySlug="sports"
-				overflow
-			/>
-
-			<HorizontalNewsGrid
-				articles={exclusiveArticles.slice(0, 4)}
-				header="SN Exclusives"
-				categorySlug="exclusives"
-				overflow
+			<ThreeColumnLayout {...articlesWithCategory.localArticles} />
+			<FlatCardHorizontal {...articlesWithCategory.sportsArticles} />
+			<ThreeColumnLayout2
+				articles1={articlesWithCategory.nationalArticles}
+				articles2={articlesWithCategory.topArticles}
 			/>
 		</div>
 	);

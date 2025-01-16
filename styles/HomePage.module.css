@@ -1,5 +1,7 @@
-.LayoutStyle {
-	align-self: center;
+.HomePage {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
 .HomePage h1 {

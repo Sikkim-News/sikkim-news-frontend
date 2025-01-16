@@ -4,8 +4,30 @@ import Footer from "@/layoutComponents/Footer";
 import Header from "@/layoutComponents/Head";
 
 export const metadata = {
-	title: "Sikkim News",
-	description: "A news website for Sikkim and nearby areas.",
+	metadataBase: new URL("https://thesikkimnews.com"),
+	title: {
+		default: "Sikkim News",
+		template: "%s | Sikkim News",
+	},
+	description:
+		"Explore the latest and trending news from Sikkim and Nearby Areas.",
+	keywords: ["sikkim news", "top news sikkim", "latest news sikkim"],
+	openGraph: {
+		title: "Sikkim News",
+		description:
+			"Explore the latest and trending news from Sikkim and Nearby Areas.",
+		url: "https://thesikkimnews.com",
+		siteName: "Sikkim News",
+		locale: "en_IN",
+		images: [
+			{
+				url: "../public/resources/logo-original.png",
+				width: 800,
+				height: 600,
+				alt: "Sikkim News",
+			},
+		],
+	},
 };
 
 export default function RootLayout({ children }) {

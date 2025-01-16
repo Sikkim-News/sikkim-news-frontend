@@ -1,0 +1,23 @@
+.newHome {
+	display: grid;
+	/* margin-top: 10px; */
+	grid-template-columns: 1fr 1.5fr 1fr;
+	gap: 1.5rem;
+}
+.firstCol {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: space-between;
+}
+
+.innerColumn {
+	justify-content: center;
+	display: flex;
+	width: 100%;
+}
+@media (max-width: 768px) {
+	.newHome {
+		grid-template-columns: 1fr;
+	}
+}

@@ -1,17 +1,118 @@
-.contactHeader {
-  display: flex;
-  margin-top: 10px;
+/* styles/ContactUs.module.css */
+
+.container {
+	font-family: Arial, sans-serif;
+	padding: 20px;
+	max-width: 1200px;
+	margin: auto;
+	color: #333;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.contactHeader span {
-  margin-left: 5px;
+.heroSection {
+	text-align: center;
+	padding: 20px;
 }
 
-.contactBody {
-  margin-left: 27px;
-  width: max-content;
+.title {
+	font-size: 2.5rem;
+	color: #333;
+	margin-bottom: 10px;
 }
 
-.contactBody a {
-  text-decoration: underline;
+.subtitle {
+	font-size: 1.2rem;
+	color: #666;
+}
+
+.contactSection {
+	display: flex;
+	justify-content: space-between;
+	margin: 40px 0;
+}
+
+.contactCard {
+	flex: 1;
+	text-align: center;
+	padding: 20px;
+	background-color: #fff;
+	margin: 0 10px;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contactCard:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.iconLarge {
+	color: #ba181b;
+	font-size: 2.5rem;
+	margin-bottom: 10px;
+}
+
+.socialMediaSection {
+	text-align: center;
+	margin: 40px 0;
+}
+
+.socialIcons {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	margin-top: 15px;
+}
+
+.socialIcon {
+	font-size: 2rem;
+	color: #555;
+	transition: transform 0.2s, color 0.2s;
+}
+
+.iconHover:hover {
+	color: #3b5998; /* Example for Facebook */
+	transform: scale(1.2);
+}
+
+.iconHover:hover:nth-child(2) {
+	color: #ff0000; /* Example for YouTube */
+}
+
+.iconHover:hover:nth-child(3) {
+	color: #1da1f2; /* Example for Twitter */
+}
+
+.iconHover:hover:nth-child(4) {
+	color: #0088cc; /* Example for Telegram */
+}
+
+.iconHover:hover:nth-child(5) {
+	color: #e1306c; /* Example for Instagram */
+}
+
+.extraSection {
+	text-align: center;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contactButton {
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 1rem;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.contactButton:hover {
+	background-color: #45a049;
 }
