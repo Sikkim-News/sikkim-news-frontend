@@ -1,7 +1,9 @@
+import Script from "next/script";
 import "../styles/globals.css";
 import styles from "../styles/Layout.module.css";
 import Footer from "@/layoutComponents/Footer";
 import Header from "@/layoutComponents/Head";
+import Head from "next/head";
 
 export const metadata = {
 	metadataBase: new URL("https://thesikkimnews.com"),
@@ -33,6 +35,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
+			<head>
+				<Script
+					async={true}
+					crossOrigin="anonymous"
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
+					strategy="afterInteractive"
+				/>
+			</head>
 			<body className={styles.layout}>
 				<Header />
 				<main className={styles.layout__children}>{children}</main>
