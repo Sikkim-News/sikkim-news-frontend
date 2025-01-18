@@ -1,7 +1,6 @@
 import NewsCardFlat from "@/helperComponents/NewsCardFlat";
 import styles from "@/styles/ThreeColumnLayout.module.css";
 import NewsCardText from "@/helperComponents/NewsCardText";
-import NewsCardVertical from "@/helperComponents/NewsCardVertical";
 import NewsCardVerticalAlt from "@/helperComponents/NewsCardVerticalAlt";
 import NewsCardVerticalCompact from "@/helperComponents/NewsCardVerticalCompact";
 import SmallCard from "@/helperComponents/SmallCard";
@@ -21,9 +20,7 @@ export default function ThreeColumnLayout({ category, articles }) {
 					))}
 				</div>
 				<div className={styles.firstCol}>
-					<div className={styles.innerColumn}>
-						<SmallCard {...articles[0]} />
-					</div>
+					<SmallCard {...articles[0]} />
 					<NewsCardFlat {...articles[5]} />
 					<NewsCardText {...articles[10]} />
 				</div>

@@ -17,7 +17,5 @@ export default async function CategoryPage({ params }) {
 	);
 
 	console.log(allArticles);
-	return (
-		<GridPrint category={allArticles[0].category} articles={allArticles} />
-	);
+	return <GridPrint category={params.catid} articles={allArticles} />;
 }

@@ -40,13 +40,13 @@ export default function FullPage(props) {
 		<div className={styles.HomePage}>
 			<HomeTopLayout
 				articles1={articlesWithCategory.bannerArticles}
-				articles2={articlesWithCategory.exclusiveArticles}
+				articles2={articlesWithCategory.topArticles}
 			/>
 			<ThreeColumnLayout {...articlesWithCategory.localArticles} />
 			<FlatCardHorizontal {...articlesWithCategory.sportsArticles} />
 			<ThreeColumnLayout2
 				articles1={articlesWithCategory.nationalArticles}
-				articles2={articlesWithCategory.topArticles}
+				articles2={articlesWithCategory.exclusiveArticles}
 			/>
 		</div>
 	);
