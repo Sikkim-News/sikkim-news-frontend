@@ -18,6 +18,7 @@ export default function ThreeColumnLayout({ category, articles }) {
 					{articles.slice(2, 4).map((article, index) => (
 						<NewsCardFlat key={index} {...article} />
 					))}
+					<NewsCardText {...articles[11]} />
 				</div>
 				<div className={styles.firstCol}>
 					<SmallCard {...articles[0]} />

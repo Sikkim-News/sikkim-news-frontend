@@ -14,7 +14,7 @@ export default function ThreeColumnLayout2({ articles1, articles2 }) {
 				<div className={styles.trendingGrid}>
 					<NewsCardVerticalAlt {...articles1.articles[0]} />
 					<div className={styles.trendingUpdates}>
-						{articles1.articles.slice(4, 8).map((article, index) => (
+						{articles1.articles.slice(4, 7).map((article, index) => (
 							<NewsCardText key={index} {...article} />
 						))}
 					</div>
@@ -25,9 +25,9 @@ export default function ThreeColumnLayout2({ articles1, articles2 }) {
 			</section>
 
 			{/* Regional Updates */}
-			<section className={styles.regionalSection}>
+			<section className={styles.lastCol}>
 				<SectionHeader title={articles2.category} />
-				<div className={styles.regionalGrid}>
+				<div className={styles.lastColGrid}>
 					<NewsCardVerticalCompact {...articles2.articles[0]} />
 					<NewsCardFlat {...articles2.articles[1]} />
 				</div>

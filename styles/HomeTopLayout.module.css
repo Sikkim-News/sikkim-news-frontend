@@ -2,15 +2,15 @@
 	width: 40%;
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
 	justify-content: space-between;
+	gap: 1rem;
 }
 
 .mainFeature {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
 	width: 30%;
+	gap: 1rem;
 	justify-content: space-between;
 }
 
@@ -22,17 +22,14 @@
 }
 
 .lastCol {
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* gap: 1rem; */
 	width: 30%;
-	/* justify-content: space-between; */
+	gap: 1rem;
 }
 
 .lastColArticles {
 	display: flex;
+	gap: 1rem;
 	flex-direction: column;
-	gap: 1.5rem;
 	justify-content: space-between;
 }
 

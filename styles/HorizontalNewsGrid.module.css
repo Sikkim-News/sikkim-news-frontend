@@ -1,39 +1,36 @@
 .newsGrid__header {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .viewMoreHeader {
-  width: fit-content;
-  display: none;
+	width: fit-content;
+	display: none;
 }
 
 .cardGrid {
-  display: grid;
-}
-
-.cardGrid div {
-  margin: 10px;
+	display: grid;
+	gap: 1rem;
 }
 
 .viewMore {
-  display: block;
+	display: block;
 }
 
 @media screen and (min-width: 600px) {
-  .horizontalScroll {
-    grid-auto-flow: column;
-    grid-auto-columns: 25%;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    padding: 0 10px 10px;
-  }
+	.horizontalScroll {
+		grid-auto-flow: column;
+		grid-auto-columns: 25%;
+		overflow-x: auto;
+		overscroll-behavior-inline: contain;
+		padding: 0 10px 10px;
+	}
 
-  .viewMore {
-    display: none;
-  }
+	.viewMore {
+		display: none;
+	}
 
-  .viewMoreHeader {
-    display: block;
-  }
+	.viewMoreHeader {
+		display: block;
+	}
 }

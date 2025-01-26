@@ -4,6 +4,7 @@ import HomeTopLayout from "@/layoutComponents/HomeTopLayout";
 import ThreeColumnLayout from "@/layoutComponents/ThreeColumnLayout";
 import FlatCardHorizontal from "@/layoutComponents/FlatCardHorizontal";
 import ThreeColumnLayout2 from "@/layoutComponents/ThreeColumnLayout2";
+import VideosLayout from "@/components/helperComponents/VideosLayout";
 
 export default function FullPage(props) {
 	const articlesWithCategory = {
@@ -44,6 +45,7 @@ export default function FullPage(props) {
 			/>
 			<ThreeColumnLayout {...articlesWithCategory.localArticles} />
 			<FlatCardHorizontal {...articlesWithCategory.sportsArticles} />
+			<VideosLayout />
 			<ThreeColumnLayout2
 				articles1={articlesWithCategory.nationalArticles}
 				articles2={articlesWithCategory.exclusiveArticles}
