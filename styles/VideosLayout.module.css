@@ -1,0 +1,22 @@
+.videoContainer {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1rem;
+}
+
+.videoContainer iframe {
+	aspect-ratio: 16 / 9;
+	width: 100% !important;
+}
+
+@media screen and (max-width: 1024px) {
+	.videoContainer {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.videoContainer {
+		grid-template-columns: 1fr;
+	}
+}

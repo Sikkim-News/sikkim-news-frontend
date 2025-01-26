@@ -1,12 +1,6 @@
 import styles from "@/styles/Sectionheader.module.css";
-import ViewMore from "./ViewMore";
 
-export default function SectionHeader({
-	title,
-	style,
-	viewMore,
-	categorySlug,
-}) {
+export default function SectionHeader({ title, style }) {
 	return (
 		<>
 			<div className={styles.sectionHeader} style={style}>

@@ -19,7 +19,7 @@
 	gap: 1rem;
 }
 
-.regionalGrid {
+.lastColGrid {
 	display: grid;
 	gap: 1rem;
 	margin-top: 1rem;

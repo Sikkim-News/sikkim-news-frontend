@@ -3,8 +3,6 @@
 import styles from "@/styles/HomeTopLayout.module.css";
 import NewsCardFlat from "@/components/helperComponents/NewsCardFlat";
 import NewsCardText from "@/components/helperComponents/NewsCardText";
-import NewsCardVerticalAlt from "@/components/helperComponents/NewsCardVerticalAlt";
-import NewsCardVerticalCompact from "@/components/helperComponents/NewsCardVerticalCompact";
 import NewsCardVertical from "@/helperComponents/NewsCardVertical";
 import SmallCard from "@/helperComponents/SmallCard";
 import SectionHeader from "../SectionHeader";
@@ -13,7 +11,6 @@ export default function HomeTopLayout({ articles1, articles2 }) {
 	// console.log(articles1.articles);
 	return (
 		<div className={styles.topLayout}>
-			{/* Banner articles1.articles */}
 			<div className={styles.mainStory}>
 				<NewsCardVertical {...articles1.articles[0]} />
 				{articles1.articles.slice(1, 3).map((article, index) => (
@@ -34,9 +31,10 @@ export default function HomeTopLayout({ articles1, articles2 }) {
 				<SectionHeader title={articles2.category} />
 				<div className={styles.lastColArticles}>
 					<SmallCard {...articles2.articles[0]} />
-					{articles2.articles.slice(1, 3).map((article, index) => (
+					{articles2.articles.slice(1, 2).map((article, index) => (
 						<NewsCardFlat key={index} {...article} />
 					))}
+					<NewsCardText {...articles2.articles[2]} />
 				</div>
 			</div>
 		</div>
