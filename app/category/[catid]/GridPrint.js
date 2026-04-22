@@ -20,13 +20,11 @@ export default function GridPrint({ category, articles }) {
 					articles={articles}
 					displayAll={true}
 				/>
-			) : (
-				// <>divvv</>
-				<p className={styles.notAvailable}>
-					No Results Found for{" "}
-					{categoryDetails.attributes.name.charAt(0).toUpperCase()}
-				</p>
-			)}
-		</>
-	);
+				) : (
+					<p className={styles.notAvailable}>
+						No Results Found for {capitalizeWords(category)}
+					</p>
+				)}
+			</>
+		);
 }

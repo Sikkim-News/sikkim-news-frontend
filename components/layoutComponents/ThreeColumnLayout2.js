@@ -6,19 +6,22 @@ import NewsCardVerticalCompact from "@/helperComponents/NewsCardVerticalCompact"
 import NewsCardFlat from "@/helperComponents/NewsCardFlat";
 
 export default function ThreeColumnLayout2({ articles1, articles2 }) {
+	const primary = articles1?.articles ?? [];
+	const secondary = articles2?.articles ?? [];
+
 	return (
 		<div className={styles.featuredSections}>
 			{/* Trending Now */}
 			<section className={styles.trendingSection}>
 				<SectionHeader title={articles1.category} />
 				<div className={styles.trendingGrid}>
-					<NewsCardVerticalAlt {...articles1.articles[0]} />
+					{primary[0] && <NewsCardVerticalAlt {...primary[0]} />}
 					<div className={styles.trendingUpdates}>
-						{articles1.articles.slice(4, 8).map((article, index) => (
+						{primary.slice(4, 8).map((article, index) => (
 							<NewsCardText key={index} {...article} />
 						))}
 					</div>
-					{articles1.articles.slice(1, 3).map((article, index) => (
+					{primary.slice(1, 3).map((article, index) => (
 						<NewsCardFlat key={index} {...article} />
 					))}
 				</div>
@@ -28,8 +31,8 @@ export default function ThreeColumnLayout2({ articles1, articles2 }) {
 			<section className={styles.regionalSection}>
 				<SectionHeader title={articles2.category} />
 				<div className={styles.regionalGrid}>
-					<NewsCardVerticalCompact {...articles2.articles[0]} />
-					<NewsCardFlat {...articles2.articles[1]} />
+					{secondary[0] && <NewsCardVerticalCompact {...secondary[0]} />}
+					{secondary[1] && <NewsCardFlat {...secondary[1]} />}
 				</div>
 			</section>
 		</div>

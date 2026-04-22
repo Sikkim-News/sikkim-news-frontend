@@ -13,7 +13,7 @@ export default function Disclaimer() {
 			.then((res) => res.text())
 			.then((res) => setContent(res))
 			.catch((err) => console.log(err));
-	});
+	}, []);
 
 	return (
 		<div className={styles.mainDiv}>

@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
 			.then((res) => res.text())
 			.then((res) => setContent(res))
 			.catch((err) => console.log(err));
-	});
+	}, []);
 
 	return (
 		<div className={styles.mainDiv}>
