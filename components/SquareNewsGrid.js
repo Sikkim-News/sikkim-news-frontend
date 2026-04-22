@@ -10,10 +10,6 @@ function SquareNewsGrid({
 	categorySlug,
 	viewMore,
 }) {
-	console.log(
-		articles[0].attributes.coverImage.image.data.attributes.formats.small?.url
-	);
-
 	return (
 		<div className={styles.newsGrid}>
 			<SectionHeader

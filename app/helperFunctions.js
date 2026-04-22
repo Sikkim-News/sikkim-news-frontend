@@ -1,23 +1,21 @@
-import { fetchAPI } from "../lib/api.js";
+import { fetchAPI, getStrapiURL } from "../lib/api.js";
 
 export const getDataforCategory = async (slug) => {
-	const category = await Promise.all([
-		fetchAPI("/categories", {
-			filters: { slug: slug },
-			populate: {
-				articles: {
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "name" },
-						categories: { populate: "name" },
-					},
-					sort: ["publishedAt:desc"],
+	const category = await fetchAPI("/categories", {
+		filters: { slug: slug },
+		populate: {
+			articles: {
+				populate: {
+					coverImage: { populate: "*" },
+					author: { populate: "name" },
+					categories: { populate: "name" },
 				},
+				sort: ["publishedAt:desc"],
 			},
-		}),
-	]);
+		},
+	});
 
-	return category[0].data[0] ? category[0].data[0] : null;
+	return category.data?.[0] ?? null;
 };
 
 export const getHomeData = async () => {
@@ -119,20 +117,19 @@ export const getHomeData = async () => {
 	// console.log(bannerArticles.data[0].attributes.articles.data.length);
 
 	return {
-		bannerArticles: bannerArticles.data[0].attributes.articles.data,
-		trendingArticles: trendingArticles.data[0].attributes.articles.data,
-		nationalArticles: nationalArticles.data[0].attributes.articles.data,
-		sportsArticles: sportsArticles.data[0].attributes.articles.data,
-		localArticles: localArticles.data[0].attributes.articles.data,
-		exclusiveArticles: exclusiveArticles.data[0].attributes.articles.data,
+		bannerArticles: bannerArticles.data?.[0]?.attributes?.articles?.data ?? [],
+		trendingArticles: trendingArticles.data?.[0]?.attributes?.articles?.data ?? [],
+		nationalArticles: nationalArticles.data?.[0]?.attributes?.articles?.data ?? [],
+		sportsArticles: sportsArticles.data?.[0]?.attributes?.articles?.data ?? [],
+		localArticles: localArticles.data?.[0]?.attributes?.articles?.data ?? [],
+		exclusiveArticles:
+			exclusiveArticles.data?.[0]?.attributes?.articles?.data ?? [],
 	};
 };
 
 export const getAllArticles = async (num) => {
 	let articles = [];
 	let response = {};
-	console.log("In get all articles");
-	console.log(num);
 	if (num) {
 		response = await fetchAPI("/articles", {
 			fields: ["slug", "title", "createdAt"],
@@ -149,32 +146,48 @@ export const getAllArticles = async (num) => {
 		});
 		articles = response.data;
 	} else {
+		let page = 1;
 		do {
 			response = await fetchAPI("/articles", {
 				fields: ["slug", "title", "createdAt"],
 				pagination: {
-					page: 1,
+					page,
 					pageSize: 50,
 				},
 			});
 			articles = articles.concat(response.data);
+			page += 1;
 		} while (articles.length < response.meta.pagination.total);
 	}
 	return articles;
 };
 
 export const extractDatafromArticles = (articles) => {
-	// console.log(articles);
-	return articles.map((article, index) => ({
-		imageUrl:
-			article.attributes.coverImage.image.data.attributes.formats.small?.url,
-		headline: article.attributes.title,
-		content: article.attributes.content,
-		author: article.attributes.author.data.attributes.name,
-		date: article.attributes.createdAt,
-		slug: article.attributes.slug,
-		category: article.attributes.categories.data[0].attributes.name,
-	}));
+	return (articles ?? []).map((article) => {
+		const formats =
+			article?.attributes?.coverImage?.image?.data?.attributes?.formats ?? {};
+		const imagePath =
+			formats.large?.url ??
+			formats.medium?.url ??
+			formats.small?.url ??
+			formats.thumbnail?.url ??
+			null;
+
+		return {
+			imageUrl: imagePath
+				? imagePath.startsWith("/")
+					? getStrapiURL(imagePath)
+					: imagePath
+				: "/resources/mountains.png",
+			headline: article?.attributes?.title ?? "",
+			content: article?.attributes?.content ?? "",
+			author: article?.attributes?.author?.data?.attributes?.name ?? "",
+			date: article?.attributes?.createdAt ?? "",
+			slug: article?.attributes?.slug ?? "",
+			category:
+				article?.attributes?.categories?.data?.[0]?.attributes?.name ?? "",
+		};
+	});
 };
 
 // (async () => {

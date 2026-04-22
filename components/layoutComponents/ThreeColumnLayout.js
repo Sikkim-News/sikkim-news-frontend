@@ -7,27 +7,27 @@ import SmallCard from "@/helperComponents/SmallCard";
 import SectionHeader from "../SectionHeader";
 
 export default function ThreeColumnLayout({ category, articles }) {
-	const data = articles[0];
+	const items = articles ?? [];
 
 	return (
 		<div>
 			<SectionHeader title={category} />
 			<div className={styles.newHome}>
 				<div className={styles.firstCol}>
-					<NewsCardVerticalAlt {...articles[1]} />
-					{articles.slice(2, 4).map((article, index) => (
+					{items[1] && <NewsCardVerticalAlt {...items[1]} />}
+					{items.slice(2, 4).map((article, index) => (
 						<NewsCardFlat key={index} {...article} />
 					))}
 					<NewsCardText {...articles[11]} />
 				</div>
 				<div className={styles.firstCol}>
-					<SmallCard {...articles[0]} />
-					<NewsCardFlat {...articles[5]} />
-					<NewsCardText {...articles[10]} />
+					{items[0] && <SmallCard {...items[0]} />}
+					{items[5] && <NewsCardFlat {...items[5]} />}
+					{items[10] && <NewsCardText {...items[10]} />}
 				</div>
 				<div className={styles.firstCol}>
-					<NewsCardVerticalCompact {...articles[6]} />
-					{articles.slice(7, 9).map((article, index) => (
+					{items[6] && <NewsCardVerticalCompact {...items[6]} />}
+					{items.slice(7, 9).map((article, index) => (
 						<NewsCardFlat key={index} {...article} />
 					))}
 				</div>
