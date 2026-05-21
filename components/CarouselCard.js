@@ -3,8 +3,15 @@ import Link from "next/link";
 import { toHeadlineByChars } from "./helpers";
 
 export default function CarouselCard({ article }) {
+  const attrs = article?.attributes ?? article;
+  const formats =
+    attrs?.coverImage?.image?.data?.attributes?.formats ??
+    attrs?.coverImage?.image?.formats ??
+    {};
+  const imageUrl = formats.small?.url ?? formats.thumbnail?.url ?? null;
+
   return (
-    <Link href={`/${article.attributes.slug}`} passHref legacyBehavior>
+    <Link href={`/${attrs?.slug}`} passHref legacyBehavior>
       <Card
         sx={{
           height: "500px",
@@ -15,10 +22,7 @@ export default function CarouselCard({ article }) {
         <CardMedia
           component="img"
           height="500"
-          image={
-            article.attributes.coverImage.image.data.attributes.formats.small
-              ?.url
-          }
+          image={imageUrl}
           alt="green iguana"
         />
         <div
@@ -30,7 +34,7 @@ export default function CarouselCard({ article }) {
             backgroundColor: "rgba(0,0,0,0.5)",
           }}
         >
-          <p style={{ fontSize: "1.4rem", textAlign: "justify", fontFamily:"Poppins" }}>{toHeadlineByChars(article.attributes.title, 130)}</p>
+          <p style={{ fontSize: "1.4rem", textAlign: "justify", fontFamily:"Poppins" }}>{toHeadlineByChars(attrs?.title, 130)}</p>
         </div>
       </Card>
     </Link>

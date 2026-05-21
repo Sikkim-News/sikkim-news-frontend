@@ -2,11 +2,16 @@ import FullPage from "./FullPage";
 import {
 	getAllArticles,
 	getHomeData,
+	getHomepageVideos,
 	extractDatafromArticles,
 } from "./helperFunctions";
 
 export default async function Home() {
-	const allArticles = await getHomeData();
+	const [allArticles, homepageVideos, topkArticles] = await Promise.all([
+		getHomeData(),
+		getHomepageVideos(),
+		getAllArticles(10),
+	]);
 	const bannerArticles = extractDatafromArticles(allArticles.bannerArticles);
 	const trendingArticles = extractDatafromArticles(
 		allArticles.trendingArticles
@@ -20,8 +25,6 @@ export default async function Home() {
 		allArticles.exclusiveArticles
 	);
 
-	const topkArticles = await getAllArticles(10);
-
 	return (
 		<FullPage
 			bannerArticles={bannerArticles}
@@ -30,6 +33,7 @@ export default async function Home() {
 			sportsArticles={sportsArticles}
 			localArticles={localArticles}
 			exclusiveArticles={exclusiveArticles}
+			homepageVideos={homepageVideos}
 			topArticles={extractDatafromArticles(topkArticles)}
 		/>
 	);

@@ -22,19 +22,25 @@ function SquareNewsGrid({
 					isPageGrid ? styles.pageSquareGrid : styles.squareGrid
 				}`}
 			>
-				{articles.map((item, i) => (
-					<NewsCard
-						key={i}
-						imageUrl={
-							item.attributes.coverImage.image.data.attributes.formats.small
-								?.url
-						}
-						headline={item.attributes.title}
-						content={item.attributes.content}
-						slug={item.attributes.slug}
-						createdAt={item.attributes.createdAt}
-					/>
-				))}
+				{articles.map((item, i) => {
+					const attrs = item?.attributes ?? item;
+					const formats =
+						attrs?.coverImage?.image?.data?.attributes?.formats ??
+						attrs?.coverImage?.image?.formats ??
+						{};
+					const imageUrl =
+						formats.small?.url ?? formats.thumbnail?.url ?? null;
+					return (
+						<NewsCard
+							key={i}
+							imageUrl={imageUrl}
+							headline={attrs?.title}
+							content={attrs?.content}
+							slug={attrs?.slug}
+							createdAt={attrs?.createdAt}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);

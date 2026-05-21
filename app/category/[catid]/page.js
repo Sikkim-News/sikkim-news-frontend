@@ -8,8 +8,9 @@ export const metadata = {
 
 export default async function CategoryPage({ params }) {
 	const categoryDetails = await getDataforCategory(params.catid);
+	// Support both Strapi v4 (.attributes.articles.data) and v5 (.articles)
 	const allArticles = extractDatafromArticles(
-		categoryDetails?.attributes?.articles?.data ?? []
+		categoryDetails?.attributes?.articles?.data ?? categoryDetails?.articles ?? []
 	);
 
 	return <GridPrint category={params.catid} articles={allArticles} />;

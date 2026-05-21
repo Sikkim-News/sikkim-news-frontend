@@ -45,7 +45,7 @@ export default function FullPage(props) {
 			/>
 			<ThreeColumnLayout {...articlesWithCategory.localArticles} />
 			<FlatCardHorizontal {...articlesWithCategory.sportsArticles} />
-			<VideosLayout />
+			<VideosLayout videos={props.homepageVideos} />
 			<ThreeColumnLayout2
 				articles1={articlesWithCategory.nationalArticles}
 				articles2={articlesWithCategory.exclusiveArticles}

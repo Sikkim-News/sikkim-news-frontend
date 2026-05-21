@@ -20,18 +20,22 @@ const getLargestImage = (formats) => {
 };
 
 export default function ArticlePage({ article, categoryArticles }) {
+	// Support both Strapi v4 (article.attributes.X) and v5 (article.X)
+	const attrs = article?.attributes ?? article;
 	const imageFormats =
-		article.attributes.coverImage?.image?.data?.attributes?.formats ?? {};
-	const authorName = article.attributes.author?.data?.attributes?.name ?? "Staff";
-	const publishedDate = article.attributes.publishedAt
-		? new Date(article.attributes.publishedAt).toDateString()
+		attrs.coverImage?.image?.data?.attributes?.formats ??
+		attrs.coverImage?.image?.formats ?? {};
+	const authorName =
+		attrs.author?.data?.attributes?.name ?? attrs.author?.name ?? "Staff";
+	const publishedDate = attrs.publishedAt
+		? new Date(attrs.publishedAt).toDateString()
 		: "";
 
 	return (
 		<>
 			<article className={styles.mainArticle}>
 				<div>
-					<h1>{article.attributes.title}</h1>
+					<h1>{attrs.title}</h1>
 					<div className={styles.articleMetadata}>
 						<span>{authorName}</span>
 						{publishedDate && <span>{publishedDate}</span>}
@@ -49,7 +53,7 @@ export default function ArticlePage({ article, categoryArticles }) {
 				</div>
 
 				<div className={styles.articleBody}>
-					<ReactMarkdown>{article.attributes.content}</ReactMarkdown>
+					<ReactMarkdown>{attrs.content}</ReactMarkdown>
 				</div>
 				<SocialMediaNewsShare article={article} />
 			</article>

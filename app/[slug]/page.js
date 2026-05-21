@@ -16,29 +16,32 @@ export async function generateMetadata({ params }) {
 		};
 	}
 
+	// Support both Strapi v4 (article.attributes.X) and v5 (article.X)
+	const attrs = article.article?.attributes ?? article.article;
 	const ogImagePath =
-		article.article.attributes.coverImage?.image?.data?.attributes?.formats?.small
-			?.url ?? "/resources/mountains.png";
+		attrs.coverImage?.image?.data?.attributes?.formats?.small?.url ??
+		attrs.coverImage?.image?.formats?.small?.url ??
+		"/resources/mountains.png";
 	const ogImageUrl = ogImagePath.startsWith("/")
 		? getStrapiURL(ogImagePath)
 		: ogImagePath;
 
 	return {
-		title: article.article.attributes.title ?? "Sikkim News",
+		title: attrs.title ?? "Sikkim News",
 		description:
-			article.article.attributes.description ??
+			attrs.description ??
 			"Explore the latest and trending news from Sikkim and Nearby Areas.",
 		openGraph: {
-			title: article.article.attributes.title ?? "Sikkim News",
+			title: attrs.title ?? "Sikkim News",
 			description:
-				article.article.attributes.description ??
+				attrs.description ??
 				"Explore the latest and trending news from Sikkim and Nearby Areas.",
 			images: [
 				{
 					url: ogImageUrl,
 					width: 800,
 					height: 600,
-					alt: article.article.attributes.title ?? "Sikkim News",
+					alt: attrs.title ?? "Sikkim News",
 				},
 			],
 		},
@@ -49,7 +52,7 @@ export async function generateMetadata({ params }) {
 			"North East",
 			"Darjeeling News",
 			"Top News in Sikkim",
-			article.article.attributes.description ?? "Sikkim News",
+			attrs.description ?? "Sikkim News",
 		],
 	};
 }
@@ -59,15 +62,17 @@ const getData = cache(async ({ params }) => {
 		filters: { slug: params.slug },
 		populate: {
 			coverImage: { populate: "*" },
-			categories: "name",
-			author: "name",
+			categories: { fields: ["name", "slug"] },
+			author: { fields: ["name"] },
 		},
 	});
 	const article = articleResponse?.data?.[0];
 	if (!article) return null;
 
+	// Support both Strapi v4 and v5 for category slug lookup
 	const categorySlug =
-		article.attributes?.categories?.data?.[0]?.attributes?.slug ?? null;
+		article.attributes?.categories?.data?.[0]?.attributes?.slug ??
+		article.categories?.[0]?.slug ?? null;
 	const categoryArticles = categorySlug
 		? await getDataforCategory(categorySlug)
 		: null;
@@ -75,7 +80,8 @@ const getData = cache(async ({ params }) => {
 	return {
 		article,
 		categoryArticles: extractDatafromArticles(
-			categoryArticles?.attributes?.articles?.data ?? []
+			categoryArticles?.attributes?.articles?.data ??
+			categoryArticles?.articles ?? []
 		),
 	};
 });
