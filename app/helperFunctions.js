@@ -1,23 +1,114 @@
-import { fetchAPI } from "../lib/api.js";
+import { fetchAPI, getStrapiURL } from "../lib/api.js";
+
+const HOMEPAGE_VIDEO_LIMIT = 4;
+
+const getYouTubeVideoId = (url) => {
+	if (!url || typeof url !== "string") {
+		return null;
+	}
+
+	const trimmedUrl = url.trim();
+	if (!trimmedUrl) {
+		return null;
+	}
+
+	if (/^[a-zA-Z0-9_-]{11}$/.test(trimmedUrl)) {
+		return trimmedUrl;
+	}
+
+	try {
+		const parsedUrl = new URL(trimmedUrl);
+		const host = parsedUrl.hostname.replace(/^www\./, "").toLowerCase();
+
+		if (host === "youtu.be") {
+			const shortId = parsedUrl.pathname.split("/").filter(Boolean)[0];
+			return /^[a-zA-Z0-9_-]{11}$/.test(shortId) ? shortId : null;
+		}
+
+		if (
+			host === "youtube.com" ||
+			host === "m.youtube.com" ||
+			host === "youtube-nocookie.com"
+		) {
+			const watchId = parsedUrl.searchParams.get("v");
+			if (/^[a-zA-Z0-9_-]{11}$/.test(watchId ?? "")) {
+				return watchId;
+			}
+
+			const pathSegments = parsedUrl.pathname.split("/").filter(Boolean);
+			const embedLikeId =
+				pathSegments[0] === "embed" ||
+				pathSegments[0] === "shorts" ||
+				pathSegments[0] === "live"
+					? pathSegments[1]
+					: null;
+
+			return /^[a-zA-Z0-9_-]{11}$/.test(embedLikeId ?? "") ? embedLikeId : null;
+		}
+	} catch {
+		return null;
+	}
+
+	return null;
+};
+
+const normalizeHomepageVideo = (video, index) => {
+	// Support both Strapi v4 (video.attributes.X) and v5 (video.X)
+	const attrs = video?.attributes ?? video;
+
+	// Local schema uses youtubeUrl/youtubeVideoId; production uses Link
+	const videoId =
+		attrs?.youtubeVideoId?.trim() ||
+		getYouTubeVideoId(attrs?.Link ?? "") ||
+		getYouTubeVideoId(attrs?.youtubeUrl ?? "");
+
+	if (!videoId) {
+		return null;
+	}
+
+	const rawUrl = attrs?.youtubeUrl ?? attrs?.Link ?? `https://www.youtube.com/watch?v=${videoId}`;
+
+	return {
+		id: video?.id ?? `homepage-video-${index}`,
+		title:
+			attrs.title?.trim() ||
+			attrs.Title?.trim() ||
+			attrs.name?.trim() ||
+			`Latest Video ${index + 1}`,
+		youtubeUrl: rawUrl,
+		videoId,
+		embedUrl: `https://www.youtube.com/embed/${videoId}`,
+		thumbnailUrl: attrs?.thumbnailUrl ?? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+	};
+};
 
 export const getDataforCategory = async (slug) => {
-	const category = await Promise.all([
-		fetchAPI("/categories", {
-			filters: { slug: slug },
-			populate: {
-				articles: {
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "name" },
-						categories: { populate: "name" },
-					},
-					sort: ["publishedAt:desc"],
+	const category = await fetchAPI("/categories", {
+		filters: { slug: slug },
+		populate: {
+			articles: {
+				fields: ["title", "slug", "createdAt", "publishedAt"],
+				populate: {
+					coverImage: { populate: "*" },
+					author: { fields: ["name"] },
+					categories: { fields: ["name", "slug"] },
 				},
+				sort: ["publishedAt:desc"],
 			},
-		}),
-	]);
+		},
+	});
 
-	return category[0].data[0] ? category[0].data[0] : null;
+	return category.data?.[0] ?? null;
+};
+
+const HOME_ARTICLE_POPULATE = {
+	fields: ["title", "slug", "createdAt", "publishedAt"],
+	populate: {
+		coverImage: { populate: "*" },
+		author: { fields: ["name"] },
+		categories: { fields: ["name", "slug"] },
+	},
+	sort: ["publishedAt:desc"],
 };
 
 export const getHomeData = async () => {
@@ -32,107 +123,66 @@ export const getHomeData = async () => {
 	] = await Promise.all([
 		fetchAPI("/categories", {
 			filters: { name: "banner" },
-			// pagination: { start: 0, limit: 5 },
-			populate: {
-				articles: {
-					// pagination: { page: 1, pageSize: 5 },
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "*" },
-						categories: { populate: "*" },
-					},
-					sort: ["publishedAt:desc"],
-				},
-			},
+			populate: { articles: HOME_ARTICLE_POPULATE },
 		}),
 		fetchAPI("/categories", {
 			filters: { name: "trending" },
-			populate: {
-				articles: {
-					sort: ["publishedAt:desc"],
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "*" },
-						categories: { populate: "*" },
-					},
-				},
-			},
+			populate: { articles: HOME_ARTICLE_POPULATE },
 		}),
 		fetchAPI("/categories", {
 			filters: { name: "national" },
-			populate: {
-				articles: {
-					sort: ["publishedAt:desc"],
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "*" },
-						categories: { populate: "*" },
-					},
-				},
-			},
+			populate: { articles: HOME_ARTICLE_POPULATE },
 		}),
 		fetchAPI("/categories", {
 			filters: { name: "sports" },
-			populate: {
-				articles: {
-					sort: ["publishedAt:desc"],
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "*" },
-						categories: { populate: "*" },
-					},
-				},
-			},
+			populate: { articles: HOME_ARTICLE_POPULATE },
 		}),
 		fetchAPI("/categories", {
 			filters: { name: "local" },
-			populate: {
-				articles: {
-					sort: ["publishedAt:desc"],
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "*" },
-						categories: { populate: "*" },
-					},
-				},
-			},
+			populate: { articles: HOME_ARTICLE_POPULATE },
 		}),
 		fetchAPI("/categories", {
 			filters: { name: "exclusives" },
-			populate: {
-				articles: {
-					sort: ["publishedAt:desc"],
-					populate: {
-						coverImage: { populate: "*" },
-						author: { populate: "*" },
-						categories: { populate: "*" },
-					},
-				},
-			},
+			populate: { articles: HOME_ARTICLE_POPULATE },
 		}),
 	]);
 
-	// console.log(
-	// 	bannerArticles.data[0].attributes.articles.data[0].attributes.categories
-	// 		.data[0].attributes.name
-	// );
-	// console.log(bannerArticles.data[0].attributes.articles.data.length);
+	// Support both Strapi v4 (.attributes.articles.data) and v5 (.articles)
+	const getArticles = (res) =>
+		res.data?.[0]?.attributes?.articles?.data ?? res.data?.[0]?.articles ?? [];
 
 	return {
-		bannerArticles: bannerArticles.data[0].attributes.articles.data,
-		trendingArticles: trendingArticles.data[0].attributes.articles.data,
-		nationalArticles: nationalArticles.data[0].attributes.articles.data,
-		sportsArticles: sportsArticles.data[0].attributes.articles.data,
-		localArticles: localArticles.data[0].attributes.articles.data,
-		exclusiveArticles: exclusiveArticles.data[0].attributes.articles.data,
+		bannerArticles: getArticles(bannerArticles),
+		trendingArticles: getArticles(trendingArticles),
+		nationalArticles: getArticles(nationalArticles),
+		sportsArticles: getArticles(sportsArticles),
+		localArticles: getArticles(localArticles),
+		exclusiveArticles: getArticles(exclusiveArticles),
 	};
+};
+
+export const getHomepageVideos = async () => {
+	try {
+		const response = await fetchAPI("/ytvideos", {
+			sort: ["publishedAt:desc", "createdAt:desc"],
+			pagination: {
+				page: 1,
+				pageSize: HOMEPAGE_VIDEO_LIMIT,
+			},
+		});
+
+		return (response?.data ?? [])
+			.map((video, index) => normalizeHomepageVideo(video, index))
+			.filter(Boolean);
+	} catch (error) {
+		console.error("Failed to fetch homepage videos:", error);
+		return [];
+	}
 };
 
 export const getAllArticles = async (num) => {
 	let articles = [];
 	let response = {};
-	console.log("In get all articles");
-	console.log(num);
 	if (num) {
 		response = await fetchAPI("/articles", {
 			fields: ["slug", "title", "createdAt"],
@@ -142,39 +192,60 @@ export const getAllArticles = async (num) => {
 			},
 			populate: {
 				coverImage: { populate: "*" },
-				author: { populate: "*" },
-				categories: { populate: "*" },
+				author: { fields: ["name"] },
+				categories: { fields: ["name", "slug"] },
 			},
 			sort: ["publishedAt:desc"],
 		});
 		articles = response.data;
 	} else {
+		let page = 1;
 		do {
 			response = await fetchAPI("/articles", {
 				fields: ["slug", "title", "createdAt"],
 				pagination: {
-					page: 1,
+					page,
 					pageSize: 50,
 				},
 			});
 			articles = articles.concat(response.data);
+			page += 1;
 		} while (articles.length < response.meta.pagination.total);
 	}
 	return articles;
 };
 
 export const extractDatafromArticles = (articles) => {
-	// console.log(articles);
-	return articles.map((article, index) => ({
-		imageUrl:
-			article.attributes.coverImage.image.data.attributes.formats.small?.url,
-		headline: article.attributes.title,
-		content: article.attributes.content,
-		author: article.attributes.author.data.attributes.name,
-		date: article.attributes.createdAt,
-		slug: article.attributes.slug,
-		category: article.attributes.categories.data[0].attributes.name,
-	}));
+	return (articles ?? []).map((article) => {
+		// Support both Strapi v4 (article.attributes.X) and v5 (article.X)
+		const attrs = article?.attributes ?? article;
+
+		const formats =
+			attrs?.coverImage?.image?.data?.attributes?.formats ??
+			attrs?.coverImage?.image?.formats ?? {};
+		const imagePath =
+			formats.large?.url ??
+			formats.medium?.url ??
+			formats.small?.url ??
+			formats.thumbnail?.url ??
+			null;
+
+		return {
+			imageUrl: imagePath
+				? imagePath.startsWith("/")
+					? getStrapiURL(imagePath)
+					: imagePath
+				: "/resources/mountains.png",
+			headline: attrs?.title ?? "",
+			content: attrs?.content ?? "",
+			author: attrs?.author?.data?.attributes?.name ?? attrs?.author?.name ?? "",
+			date: attrs?.createdAt ?? "",
+			slug: attrs?.slug ?? "",
+			category:
+				attrs?.categories?.data?.[0]?.attributes?.name ??
+				attrs?.categories?.[0]?.name ?? "",
+		};
+	});
 };
 
 // (async () => {

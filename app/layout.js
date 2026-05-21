@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import styles from "../styles/Layout.module.css";
 import Footer from "@/layoutComponents/Footer";
 import Header from "@/layoutComponents/Head";
-import Head from "next/head";
 
 export const metadata = {
 	metadataBase: new URL("https://thesikkimnews.com"),
@@ -14,19 +13,19 @@ export const metadata = {
 	description:
 		"Explore the latest and trending news from Sikkim and Nearby Areas.",
 	keywords: ["sikkim news", "top news sikkim", "latest news sikkim"],
-	openGraph: {
+		openGraph: {
 		title: "Sikkim News",
 		description:
 			"Explore the latest and trending news from Sikkim and Nearby Areas.",
 		url: "https://thesikkimnews.com",
 		siteName: "Sikkim News",
 		locale: "en_IN",
-		images: [
-			{
-				url: "../public/resources/logo-original.png",
-				width: 800,
-				height: 600,
-				alt: "Sikkim News",
+			images: [
+				{
+					url: "/resources/logo-original.png",
+					width: 800,
+					height: 600,
+					alt: "Sikkim News",
 			},
 		],
 	},
@@ -35,15 +34,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<head>
+			<body className={styles.layout}>
+				<Script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-JTGRWEJ5VG"
+					strategy="afterInteractive"
+				/>
+				<Script id="google-analytics" strategy="afterInteractive">
+					{`
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', 'G-JTGRWEJ5VG');
+					`}
+				</Script>
 				<Script
 					async={true}
 					crossOrigin="anonymous"
 					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5447622233929013"
 					strategy="afterInteractive"
 				/>
-			</head>
-			<body className={styles.layout}>
 				<Header />
 				<main className={styles.layout__children}>{children}</main>
 				<Footer />

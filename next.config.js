@@ -8,6 +8,7 @@ const nextConfig = {
       "picsum.photos",
       "images.unsplash.com",
       "res.cloudinary.com",
+      "sikkim-news-backend-p6i7o.ondigitalocean.app",
     ],
   },
 };

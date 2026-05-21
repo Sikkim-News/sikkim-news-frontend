@@ -1,6 +1,8 @@
 import styles from "@/styles/SocialMediaNewsShare.module.css";
 
 export default function SocialMediaNewsShare({ article }) {
+  // Support both Strapi v4 (article.attributes.slug) and v5 (article.slug)
+  const slug = article?.attributes?.slug ?? article?.slug ?? "";
   return (
     <div className={styles.newsShare}>
       <span>Share on Social Media</span>
@@ -8,7 +10,7 @@ export default function SocialMediaNewsShare({ article }) {
       {/* Facebook Button */}
       <div className={styles.socialOptions}>
         <a
-          href={`https://www.facebook.com/sharer/sharer.php?u=https://thesikkimnews.com/${article.attributes.slug}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=https://thesikkimnews.com/${slug}`}
           target="_blank"
           rel="noreferrer"
         >
@@ -30,7 +32,7 @@ export default function SocialMediaNewsShare({ article }) {
 
         {/* Twitter Button */}
         <a
-          href={`https://twitter.com/intent/tweet?url=https://thesikkimnews.com/${article.attributes.slug}`}
+          href={`https://twitter.com/intent/tweet?url=https://thesikkimnews.com/${slug}`}
           rel="noreferrer"
           target="_blank"
         >
@@ -55,7 +57,7 @@ export default function SocialMediaNewsShare({ article }) {
         </a>
 
         <a
-          href={`https://api.whatsapp.com/send?text=https://thesikkimnews.com/${article.attributes.slug}`}
+          href={`https://api.whatsapp.com/send?text=https://thesikkimnews.com/${slug}`}
           rel="noreferrer"
           target="_blank"
         >
