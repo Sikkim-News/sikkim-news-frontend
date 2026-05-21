@@ -1,7 +1,7 @@
 import { getAllArticles } from "./helperFunctions";
 
 export default async function Sitemap() {
-	const articles = await getAllArticles();
+	const articles = await getAllArticles().catch(() => []);
 	const baseUrl = "https://thesikkimnews.com";
 
 	// Support both Strapi v4 (article.attributes.X) and v5 (article.X)

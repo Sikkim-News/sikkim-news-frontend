@@ -6,33 +6,30 @@ import {
 	extractDatafromArticles,
 } from "./helperFunctions";
 
+const EMPTY_HOME = {
+	bannerArticles: [],
+	trendingArticles: [],
+	nationalArticles: [],
+	sportsArticles: [],
+	localArticles: [],
+	exclusiveArticles: [],
+};
+
 export default async function Home() {
 	const [allArticles, homepageVideos, topkArticles] = await Promise.all([
-		getHomeData(),
+		getHomeData().catch(() => EMPTY_HOME),
 		getHomepageVideos(),
-		getAllArticles(10),
+		getAllArticles(10).catch(() => []),
 	]);
-	const bannerArticles = extractDatafromArticles(allArticles.bannerArticles);
-	const trendingArticles = extractDatafromArticles(
-		allArticles.trendingArticles
-	);
-	const nationalArticles = extractDatafromArticles(
-		allArticles.nationalArticles
-	);
-	const sportsArticles = extractDatafromArticles(allArticles.sportsArticles);
-	const localArticles = extractDatafromArticles(allArticles.localArticles);
-	const exclusiveArticles = extractDatafromArticles(
-		allArticles.exclusiveArticles
-	);
 
 	return (
 		<FullPage
-			bannerArticles={bannerArticles}
-			trendingArticles={trendingArticles}
-			nationalArticles={nationalArticles}
-			sportsArticles={sportsArticles}
-			localArticles={localArticles}
-			exclusiveArticles={exclusiveArticles}
+			bannerArticles={extractDatafromArticles(allArticles.bannerArticles)}
+			trendingArticles={extractDatafromArticles(allArticles.trendingArticles)}
+			nationalArticles={extractDatafromArticles(allArticles.nationalArticles)}
+			sportsArticles={extractDatafromArticles(allArticles.sportsArticles)}
+			localArticles={extractDatafromArticles(allArticles.localArticles)}
+			exclusiveArticles={extractDatafromArticles(allArticles.exclusiveArticles)}
 			homepageVideos={homepageVideos}
 			topArticles={extractDatafromArticles(topkArticles)}
 		/>
